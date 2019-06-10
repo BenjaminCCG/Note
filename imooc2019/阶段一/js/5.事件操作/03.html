@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box>div{
+            float: left;
+        }
+        .tip{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        请选择你喜欢的背景色:
+        <select name="" id="bgselect">
+            <option value="">请选择</option>
+            <option value="#f00">红色</option>
+            <option value="#0f0">绿色</option>
+            <option value="#00f">蓝色</option>
+            <option value="#ff0">黄色</option>
+            <option value="#ccc">灰色</option>
+        </select>
+        <input type="color" id="col">
+    </div>
+    <script>
+        //onchange
+       window.onload=function(){
+          let bgc=document.getElementById('bgselect')
+          bgc.onchange=function(){
+              document.body.style.backgroundColor=this.value
+          }
+          let col=document.getElementById('col')
+          col.onchange=function(){
+            document.body.style.backgroundColor=this.value
+          }
+       }
+    </script>
+</body>
+</html>

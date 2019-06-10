@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+        <aside>
+                <details class="tool">
+                        <summary>工具</summary>
+                        <ul>
+                            <li class="tool_asp">Asp</li>
+                            <li class="tool_jsp">Jsp</li>
+                            <li class="tool_php">PHP</li>               
+                        </ul>
+                    </details>
+                    <details class="lang">
+                        <summary>语言</summary>
+                        <ul>                
+                            <li class="lang_py">Python</li>
+                            <li class="lang_go">Golang</li>
+                            <li class="lang_no">Node</li>
+                        </ul>
+                    </details>
+                   
+            </aside>
+    <script>
+        $(function(){
+        //    var py= $('aside').find('.lang-py') //find查找后代元素
+        //    console.log(py);
+           
+        //    var list= $('aside').children('details')//children查找子元素   
+        //    console.log(list);
+
+        //    var parent= $('aside').parent()//parent查找唯一父元素             
+        //    console.log(parent);
+
+            //  var parents= $('aside').parents()//parents返回所有祖先元素
+            //  console.log(parents);
+           
+        //    var prev= $('.lang_no').prev()//prev查找上一个同级元素          
+        //    console.log(prev);
+
+            // var prevAll= $('.tool_php').prevAll()//prevAll查找前面所有的同级元素
+            // console.log(prevAll);
+
+        //    var next= $('.lang_py').next()//next查找下一个同级元素         
+        //    console.log(next);
+
+        // var  nextAll= $('.lang_py').nextAll()//nextAll查找后面所有的同级元素
+        //     console.log(nextAll);
+
+        //    var eq= $('li').eq(2)//eq查找选择器类数组下标的第n个元素
+        //    console.log(eq);
+
+        //    var lasteq= $('li').eq(-2)//如果是负数则从后往前数
+        //    console.log(lasteq);
+
+        //    var siblings= $('.lang_go').siblings()//查找所有同级元素
+        //    console.log(siblings);
+        
+        //   var li= $('li').filter('.lang_go')//过滤元素类数组
+        //   console.log(li);
+
+        //   var not= $('li').not('.lang_go')//与filter相反，返回不匹配的元素
+        //   console.log(not);
+
+        //    var add= $('.tool_asp').add('.lang_go')//效果与多项选择器相同
+        //    console.log(add);  
+
+        // var  addBack= $('.lang_py').nextAll().addBack()//addBack将原本不在匹配集合中的元素添加到集合中
+        //     console.log(addBack);
+
+        //   var end= $('li').filter('.lang_go').end()//end方法取消筛选过滤方法，必须紧跟筛选过滤器
+        //   console.log(end);
+
+        //   var map= $('li').map(function(){//map方法遍历元素集合，返回一个数组
+        //       return $(this)
+        //   })
+        //   console.log(map);
+
+
+        //   var each= $('li').each(function(index){ // 返回原元素对象数组集合
+        //     return $(this).css('color','red')
+        //   })
+        //   console.log(each);
+            
+            // $.each(arr,function(index,item)) 遍历方法
+            $.each($('li'),function(index,item){
+                $(item).css('color','red')
+            })
+        })
+    </script>
+</body>
+</html>

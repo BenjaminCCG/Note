@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    //写组件
+    class Cmp1 extends React.Component{
+        constructor(...args){
+            super(...args)
+        }
+        
+        render(){  
+            // let arr=[
+            //     <div key={1}>aaa</div>,  //虚拟DOM变化时，跟踪变化，进而同步调整真实DOM节点
+            //     <div key={2}>bbb</div>,  //需要key值跟踪身份,key值不能相同，且key值不能改变
+            //     <div key={3}>ccc</div>   //成组创建dom需要设key             
+            // ]
+
+            let arr=[12,5,8]
+
+            return (
+                //  <div>
+                //  组件1
+                //  {arr.map((item,index)=>{
+                //      return <div key={index}>
+                //      {item}
+                //      </div>
+
+                //  })}
+                //  </div>
+                
+                 <div>
+                 组件1
+                 {arr.map((item,index)=>(
+                     <div key={index}>
+                     {item}
+                     </div>
+
+                     ))}
+                 </div>
+
+            )
+        }
+    }
+    //输出组件
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1 />,root)
+    </script>
+</body>
+</html>

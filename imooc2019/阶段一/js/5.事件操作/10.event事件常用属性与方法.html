@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       #gaodu{
+           height: 2000px;
+           background-color: lightgreen
+       }
+    </style>
+</head>
+<body>
+    <!-- <button id="mybtn">点击我</button> -->
+
+    <div id="parent">
+        <div id="child">点击我</div>
+    </div>
+
+    <a href="http://www.baidu.com" id="a">跳转百度</a>
+
+    <div id="gaodu">
+
+    </div>
+    <script>
+        let btn=document.getElementById('mybtn')
+        // 
+        
+
+        // btn.addEventListener('click',function(e){
+        //     //event.type:告诉我们现在的事件类型是什么
+        //     alert(event.type)//click
+        // })
+        // btn.addEventListener('mouseout',eventfun)
+    
+        //target和currentTarget
+        let parent=document.getElementById('parent')
+        // parent.addEventListener('click',function(e){
+        //     //target 点击谁谁就是target  事件源
+        //    console.log(e.target);  //child
+        //    //currentTarget 事件绑定在谁身上就是指向谁
+        //    console.log(e.currentTarget);//parent                   
+        // })
+
+        //event.preventDefault() 阻止默认行为
+        let a=document.getElementById('a')
+        a.addEventListener('click',e=>{
+            e.preventDefault()
+            alert(11)
+        })
+
+        //event.stopPropagation() 阻止事件冒泡或者捕获
+        let child=document.getElementById('child')
+        parent.addEventListener('click',function(e){
+            alert(this.id)
+        })
+        child.addEventListener('click',function(e){
+            alert(this.id)
+            e.stopPropagation()
+        })
+
+        //clientY、pageY、screenY
+        let gaodu=document.getElementById('gaodu')
+        gaodu.addEventListener('click',function(e){
+            alert("clentY:"+e.clientY+";pageY:"+e.pageY+";screenY:"+e.screenY)
+        })
+        //clientY:浏览器任务栏底部到鼠标的位置
+        //pageY：浏览器任务栏底部+滚轮距顶部距离到鼠标的位置
+        //screenY:屏幕顶部到鼠标的距离
+        //offsetY:事件触发时相对于父元素顶部的位置
+
+        //e.button==0鼠标左键
+        //e.button==1鼠标中键
+        //e.button==2鼠标右键
+    </script>
+</body>
+</html>

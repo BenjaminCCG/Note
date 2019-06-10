@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let声明的变量只在当前块级作用域有效
+        // let声明变量不能被重复声明
+        // 不存在变量提声  
+        
+        //块级作用域
+        // {
+        //     var a=1;
+        //     let b=2;
+        // }
+        // console.log(a);
+        // console.log(b);
+        // {
+        //     //1
+        //     let a=1
+        //     {
+        //         console.log(a);
+        //         let b=2
+        //     }
+        //     console.log(b);
+            
+        // }
+
+
+        //使用let或者const声明的变量 不能再被重新声明
+        // var dad='我是爸爸';
+        // console.log(dad);
+        // var dad='我才是爸爸';
+        // console.log(dad);.
+
+        // let son='我是儿子';
+        // let son=''
+
+        //不存在变量提声
+        // console.log(dad); //undefined
+        // var dad='baba'
+
+        // console.log(dad); //报错
+        // let dad='baba'
+
+
+
+        //暂存死区
+        // var monkey='我是美猴王';
+        // {
+        //     console.log(monkey);
+        //     var monkey='我是猴子'
+        // }
+        // console.log(monkey);
+
+        let monkey='我是美猴王';
+        {
+            console.log(monkey); 
+            let monkey='我是猴子'
+        }
+        console.log(monkey);
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //RegExp对象
+// 通过new RegExp()构造函数设置的正则对象转义符需要额外添加一个\
+
+//  /\\/  这是匹配一个\   
+//  new RegExp('\\\\')  在RegExp中需要双倍\进行转义
+
+// RegExp实例方法
+// var pattern=/js/;
+// var pattern=new RegExp('js')
+
+// pattern.test   pattern.exec
+
+
+// var str='js js js'
+// var pattern=/js/
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+
+// var str='js js js'
+// var pattern=/js/g
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));   
+
+// pattern.lastIndex 非全局匹配时为0
+//当为全局匹配时，lastIndex为匹配字符的后一个字符下标，当所有都匹配完成返回null之后，lastIndex又重置为0 从头开始
+
+
+// var str='js js js'
+// var pattern=/(j)s/ 
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+
+// var str='js js js'
+// var pattern=/(j)s/g
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+// console.log(pattern.exec(str));
+
+
+
+// var str='1.js 2.js 3.js';
+// var pattern=/js/g;
+// var total=0,
+//     match='',
+//     result;
+//     // console.log(pattern.exec(str));
+// while((result=pattern.exec(str))!=null){
+//     total++;
+//     match+='第'+total+'个匹配到的是:'+result[0]+';它的位置是:'+result.index+'\n'
+// }
+// match+='共找到了'+total+'处匹配\n'
+// console.log(str);
+// console.log(match);
+
+// var str='js js js'
+// var pattern=/js/g   //和exec 一样  加上g全局匹配后lastIndex也会开始工作
+// console.log(pattern.test(str));
+// console.log(pattern.test(str));
+// console.log(pattern.test(str));
+// console.log(pattern.test(str));
+// console.log(pattern.test(str));
+
+
+// var pattern = new RegExp('a\\nb')
+// console.log(pattern.toString());//输出字面量形式的字符串 a\nb
+// console.log(pattern.toLocaleString());
+// console.log(pattern.valueOf()===pattern); //valueOf()  返回正则本身 返回对象原始值
+
+
+
+//RegExp实例属性
+
+// var str='js js js'
+// var pattern=/js/ig
+// console.log(pattern.ignoreCase);//判断是否有i
+// console.log(pattern.global);//判断是否有g
+// console.log(pattern.multiline);//判断是否有m
+// console.log(pattern.lastIndex);
+// console.log(pattern.exec(str));
+
+
+//构造函数属性
+</script>
+</body>
+</html>

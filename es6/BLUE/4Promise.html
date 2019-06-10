@@ -1,0 +1,43 @@
+<!-- //异步操作
+
+//异步操作:同时进行多个操作；代码混乱
+//同步操作:一次只能进行一个操作；代码清晰
+
+//1.Promise——封装 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p=new Promise((resolve,reject)=>{
+            //异步
+            $.ajax({
+                url:"./json.txt",
+                dataType:'json',
+                success(arr){
+                    resolve(arr)
+                },
+                error(res){
+                    reject(res)
+                }
+            })
+        })
+
+        p.then(function(arr){
+            alert("成功");
+            console.log(arr);
+            
+        },function(res){
+            alert("失败")
+            console.log(res);
+            
+        })
+    </script>
+</body>
+</html>

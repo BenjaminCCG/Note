@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <input type="password">
+    <button></button>
+    <textarea disabled></textarea>
+    <select>
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+    </select>
+    <input type="checkbox" checked>1
+    <input type="checkbox">2
+    <input type="checkbox">3
+    <script>
+        $(function(){
+            // var input=$(':input')
+            // console.log(input);
+
+            // var texts=$(':text')//查找type为text的
+            // console.log(texts);//其他input的type也可以作为选择器来选中 :password/:radio
+
+            // var enabled=$(':enabled')    //选择所有可选取的
+            // console.log(enabled);
+
+            // var disabled=$(':disabled')  //选择所有不可选取的
+            // console.log(disabled);
+
+            var checked=$(':checked')  //选择所有被选中的  包括复选框、单选框和option
+            console.log(checked);
+
+            var selected=$(':selected')  //选择所有被选中的option
+            console.log(selected);
+        })
+    </script>
+</body>
+</html>

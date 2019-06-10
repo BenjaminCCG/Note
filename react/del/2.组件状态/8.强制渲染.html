@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id ="root"></div>
+
+    <script type="text/babel">
+   class Parent extends React.Component{           
+       constructor(...args){                    
+           super(...args)                          
+         this.a=5
+       }     
+       fn(){
+       this.a++;
+       this.forceUpdate()  //不推荐使用 会打断自身渲染
+       }
+       render(){       
+        console.log("渲染了");
+        
+           return (
+               <div> 
+               {this.a}
+              <input type="button" value="+1" onClick={this.fn.bind(this)} />                      
+                </div>
+           )
+       }
+   }
+
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Parent />,root)
+    </script>
+</body>
+</html>

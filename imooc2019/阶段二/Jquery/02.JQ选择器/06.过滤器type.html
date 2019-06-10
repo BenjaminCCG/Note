@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+        <details class="tool">
+            
+            <ul class="first">
+                <li class="tool_asp">Asp</li>
+                <li class="tool_jsp">Jsp</li>
+                <li class="tool_php">PHP</li>               
+            </ul>
+            <summary>IDE</summary>
+        </details>
+        <details class="tool">
+            <summary>IDE</summary>
+            <p class="on-p">我是一个P</p>
+        </details>
+        <details class="lang">
+            <summary>语言</summary>
+            <p class="la-p"></p>
+            <ul class="second">                
+                <li class="lang_py">Python</li>
+                <li class="lang_go">Golang</li>
+                <li class="lang_no">Node</li>
+            </ul>
+        </details>
+       
+
+    <script>
+        //过滤器
+        $(function(){
+        //    var first=$('details>p:first-of-type')
+        //    console.log(first);
+
+        //    var last=$('details>p:last-of-type')
+        //    console.log(last);
+
+        //    var nthF=$('details li:nth-of-type(2)')
+        //    console.log(nthF);
+           
+        //    var nthL=$('details li:nth-last-of-type(2)')
+        //    console.log(nthL);
+
+           var only=$('details>p:only-of-type')
+           console.log(only);
+           
+        })
+    </script>
+</body>
+</html>

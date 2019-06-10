@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全屏的云南旅游相册</title>
+    <link rel="stylesheet" href="./css/sttyle.css">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <form action="javascript:alert('我被提交了')">
+        <input type="text">
+        <!-- <input type="button" value="按钮"> -->
+        <button>提交</button>
+    </form>
+    <span></span>
+    <nav>
+        <a href="#">泸沽湖</a>
+        <a href="#">丽江古城</a>
+        <a href="#">茶马古道</a>
+        <a href="#">就这家·云逸客栈</a>
+        <a href="#">西双版纳</a>
+        <a href="#">云南红酒庄</a>
+        <a href="#">轿子雪山</a>
+        <a href="#">普者黑</a>
+        <a href="#">海埂大坝</a>
+        <a href="#">玉龙湾</a>
+        <a href="#">昆明郊野公园</a>
+        <a href="#">欧洲风琴小镇</a>
+    </nav>
+    <div>
+        <img src="./images/1.jpg">
+        <img src="./images/2.jpg">
+        <img src="./images/3.jpg">
+        <img src="./images/4.jpg">
+        <img src="./images/5.jpg">
+        <img src="./images/6.jpg">
+        <img src="./images/7.jpg">
+        <img src="./images/8.jpg">
+        <img src="./images/9.jpg">
+        <img src="./images/10.jpg">
+        <img src="./images/11.jpg">
+        <img src="./images/12.jpg">
+    </div>
+    <script>
+        $(function(){            
+            //resize 浏览器窗口改变事件
+            // $(window).resize(function(){
+            //     console.log($(this));                
+            // })
+
+            //focus  blur
+            // $('input').focus(function(){
+            //     console.log('我获得焦点了');                
+            // })
+
+            // $('input').blur(function(){
+            //     console.log('我失去焦点了');                
+            // })
+
+            // //change  当值发生改变时触发
+            // $('input').change(function(){
+            //     console.log('我正在改变');                
+            // })
+
+            //select 当textarea或者input文本被选中时触发(只针对可以编辑的文本输入框)
+            // $('input').select(function(){
+            //     console.log('我被选中了');                
+            // })
+
+            //submit 提交表单时，会发生submit事件
+            //1.提交表单  2.阻止表单提交   3.提交表单时做一些我们所需要的事情
+            //1.            
+            // $('input[type=button]').click(function(){
+            //     $('form').submit()
+            // })
+
+            //2.
+            // $('form').submit(function(){
+            //         return false
+            //     })
+
+            //3.
+            $('form').submit(function(){
+                var inputValue=$('input[type=text]').val()
+                if(inputValue!=='www.imooc.com'){
+                    return false
+                }
+            })
+        })        
+    </script>
+</body>
+</html>

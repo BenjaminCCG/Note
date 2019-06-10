@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #eee;
+        }
+        #calculator{
+            margin: 300px 700px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <p>
+            <input type="text" class="formerInput" value="1">
+            <span class="sign">+</span>
+            <input type="text" class="laterInput" value="1">
+            <span>=</span>
+            <span class="resultOutput"></span>
+        </p>
+        <p>
+            <input type="button" value="+" class="btn" title="">
+            <input type="button" value="- " class="btn" title="">
+            <input type="button" value="x" class="btn" title="">
+            <input type="button" value="÷" class="btn" title="">
+        </p>
+    </div>
+    <script>
+        var calculator=document.querySelector('#calculator')
+        var formerInput=calculator.querySelector('.formerInput')
+        var laterInput=calculator.querySelector('.laterInput')
+        var sign=calculator.querySelector('.sign')
+        var resultOutput=calculator.querySelector('.resultOutput')
+        var btns=calculator.querySelectorAll('.btn')
+
+        for(var i=0;i<btns.length;i++){
+            btns[i].onclick=function(){
+                
+            }
+        }
+        
+    </script>
+</body>
+</html>

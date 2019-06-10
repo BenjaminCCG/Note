@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/browser.js"></script>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">    
+       class Cmp1 extends React.Component{
+           constructor(...args){
+               super(...args)
+               this.state={
+                   a:12
+               }
+           }
+        //修改属性无法重新渲染页面，必须修改组件状态state，通过setState方式修改
+        //引起组件重新渲染的条件
+        //1.state
+        //2.props
+        //3.强制渲染
+           fn(){
+               this.state.a++
+            //    this.props.a++  props属性是只读的，无法设置 
+            //    console.log(this.state.a);
+            this.setState({
+                a:this.state.a+1
+            })
+               
+           }
+           render(){
+               return (
+                   <div>
+                    {this.state.a}
+                    <button onClick={this.fn.bind(this)}>+1</button>
+                   </div>
+               )
+           }
+       }
+        let root=document.getElementById('root')   
+        ReactDOM.render(<Cmp1 a={12} />,root)
+    </script>
+</body>
+</html>

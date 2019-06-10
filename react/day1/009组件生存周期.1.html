@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/browser.js"></script>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">  
+    list=store.get('list')  
+       class Cmp1 extends React.Component{
+           constructor(...args){
+               super(...args)
+               this.state={
+                   a:0
+               }
+           }
+           //判断是否应该进行更新
+           shouldComponentUpdate(nextProps,nextState){
+               console.log(this.state,nextState);
+               if(this.state.a%3===0){
+                   return true
+               }else {
+                   return false
+               }
+           }
+
+           componentDidMount(){
+               console.log('DidMount');               
+           }
+           componentDidUpdate(){
+               console.log('DidUpdate'); 
+           }
+
+           fn(){
+               this.setState({
+                   a:this.state.a+1
+               })
+           }
+           render(){
+               console.log('渲染了');
+               
+               return (
+                    <div>
+                        {this.state.a}
+                <input type='button' onClick={this.fn.bind(this)} value='+1 ' />
+                    </div>
+               )
+            }
+       }
+
+        
+ 
+       let root=document.getElementById('root')
+       ReactDOM.render(<Cmp1/>,root)
+    </script>
+</body>
+</html>

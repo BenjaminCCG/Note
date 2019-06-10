@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./down/vuejs.js"></script>
+    <script src="./down/vue-resource.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./down/animate.css">
+    <!-- <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px)
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.4s ease;
+        }
+
+        .cxk-enter,
+        .cxk-leave-to{
+            opacity: 0;
+            transform: translateX(150px)
+        }
+        .cxk-enter-active,
+        .cxk-leave-active{
+            transition: all 0.4s ease;
+        }
+    </style> -->
+    <!-- <style>
+        .ball{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+        }
+        li{
+            border:1px dashed #999;
+            margin: 5px;
+            line-height: 35px;
+            font-size: 12px;
+            width: 100%;
+        }
+        li:hover{
+            background-color: hotpink;
+            transition: all 0.8s ease
+        }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateY(80px)
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.6s ease
+        }
+
+        .v-move{
+            transition: all 0.6s ease
+        }
+        .v-leave-active{
+            position: absolute;
+        }
+    </style> -->
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px)
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.5s ease
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加品牌</h3>
+            </div>
+            <div class="panel-body form-inline">
+                <label>
+                    Id:
+                    <input type="text" class="form-control" v-model="id">
+                </label>
+                <label>
+                    Name:
+                    <input type="text" class="form-control" v-model="name">
+                </label>
+                <input type="button" value="添加" class="btn btn-primary" @click="add()">
+                <label>
+                    搜索名称关键字:
+                    <input type="text" class="form-control" v-model='keywords'>
+                </label>
+            </div>
+        </div>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Opertion</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr v-for="(item,i) in list" :key="item.id">
+                    <td>{{i}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.create_at}}</td>
+                    <td>
+                        <a href="" @click.prevent='del(item.id)'>删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="app2">
+            <input type="button" value="toggle" @click='flag=!flag'>  
+            <transition>
+                <h3 v-if='flag'>这是一个h3</h3>
+            </transition>  
+            <hr>
+            
+            
+            <input type="button" value="toggle" @click='flag2=!flag2'>  
+            <transition name="cxk">
+                <h3 v-if='flag2'>这是一个h5</h3>
+            </transition> 
+            <hr>
+            <input type="button" value="toggle" @click='flag3=!flag3'>  
+            <transition enter-active-class="bounceIn" leave-active-class="bounceOut" 
+            :duration="{enter:200,leave:400}">
+                <h3 v-if='flag3' class="animated">这是一个h5</h3>
+            </transition> 
+            
+        </div>
+
+    <div id="app3">
+        <input type="button" value="快到碗里来" @click='flag=!flag'>
+
+        <transition
+        @before-enter='beforeEnter'
+        @enter='enter'
+        @after-enter="afterEnter">
+            <div class="ball" v-if='flag'></div>
+        </transition>
+    </div>
+
+    <div id="app4">
+        <div>
+            <label>
+                ID:
+                <input type="text" v-model='id'>
+            </label>
+            <label>
+                Name:
+                <input type="text" v-model='name'>
+            </label>
+            <input type="button" value="添加" @click='add'>
+        </div>
+        <transition-group appear tag="ul">
+            <li v-for='(item,i) in list' :key='item.id' @click='del(i)'>
+                {{item.id}}-------------{{item.name}}
+            </li>
+        </transition-group>
+    </div>
+    <div id="app5">
+        <mycom1></mycom1>
+        <mycom2></mycom2>
+        <mycom3></mycom3>
+    </div>
+    <template id="tmp1">
+        <div>
+            <h1>这是通过template元素在外部定义的组件结构</h1>
+        </div>
+    </template>
+    <template id="tmp2">
+        <div>
+            <h1>这是通过vue实例内部创建的私有组件</h1>
+        </div>
+    </template>
+    <div id="app6">
+        <counter></counter>
+        <hr>
+        <counter></counter>
+        <hr>
+        <counter></counter>
+    </div>
+    <template id="tmp3">
+        <div>
+            <input type="button" value="+1" @click="add">
+            <h3>{{count}}</h3>
+        </div>
+    </template>
+    <div id="app7">
+        <a href="#1" @click.prevent='flag=true'>登录</a>
+        <a href="#1" @click.prevent='flag=false'>注册</a>
+        <transition mode='out-in'>
+        <login v-if='flag'></login>
+        <register v-else='flag'></register>
+        </transition>
+    </div>
+    <div id="app8">
+            <a href="#1" @click.prevent="comName='login'">登录</a>
+            <a href="#1" @click.prevent="comName='register'">注册</a>
+
+            <transition mode='out-in'>
+                <component :is="comName"></component>
+            </transition>
+            
+        </div>
+    <script>  
+    Vue.component('mycom1',Vue.extend({
+        template:'<h3>这是使用Vue.extend创建的组件-------{{msg}}</h3>',
+        data(){
+            return {
+                msg:'大家好，我是渣渣辉'
+            }
+        }
+    }))
+
+    Vue.component('mycom2',{
+        template:'#tmp1'
+    })
+    Vue.component('counter',{
+        template:'#tmp3',
+        data(){
+            return {
+                count:0
+            }
+        },
+        methods:{
+            add(){
+                this.count++
+            }
+        }
+    })
+    
+    Vue.component('login',{
+        template:'<h3>登录组件</h3>'
+    })
+    Vue.component('register',{
+        template:'<h3>注册组件</h3>'
+    })
+    var vm=new Vue({
+            el:  "#app",
+             data:{
+                 list:[
+                     {id:1,name:"奔驰",ctime:new Date()},
+                     {id:2,name:"宝马",ctime:new Date()}
+                 ],
+                 id:"",
+                 name:"",
+                 keywords:''
+             },
+             created() {
+                 this.getAllList()
+             },
+             methods:{
+                 getAllList(){
+                     this.$http.get('https://cnodejs.org/api/v1/topics  F').then(result=>{
+                         var result=result.body;
+                         if(result.success){
+                             this.list=result.data
+                         }else{
+                             console.log('失败了');                             
+                         }                        
+                     })
+                 },
+                 add(){
+                    let car={id:this.id,name:this.name,ctime:new Date()}
+                    this.list.push(car)
+                    this.id=this.name=''
+                 },
+                 del(id){
+                    let index=this.list.findIndex(item=>{
+                        if(item.id==id){                            
+                            return true
+                        }
+                    })
+                    this.list.splice(index,1)                    
+                 },
+                 search(keywords){                    
+                     return this.list.filter(item=>{                        
+                        if(item.name.includes(keywords)){
+                            return item
+                        }
+                    })
+                 }
+             }
+        })
+
+    let vm2=new Vue({
+        el:'#app2',
+        data:{
+            flag:false,
+            flag2:false,
+            flag3:false
+        }
+    })
+    
+    let vm3=new Vue({
+        el:'#app3',
+        data:{
+            flag:false
+        },
+        methods:{
+            beforeEnter(el){
+                el.style.transform='translate(0,0)'
+            },
+            enter(el,done){
+                el.offsetWidth;
+                el.style.transform='translate(150px,450px)';
+                el.style.transition='all 1s ease';
+                done()
+            },
+            afterEnter(el){
+                this.flag=!this.flag
+            }
+        }
+    })
+    
+    let vm4=new Vue({
+        el:'#app4',
+        data:{
+            list:[
+                {id:1,name:'王老菊'},
+                {id:2,name:'敬汉卿'},
+                {id:3,name:'郭杰瑞'},
+                {id:4,name:'周扒片'}
+            ],
+            id:'',
+            name:''
+        },
+        methods:{
+            del(i){
+                this.list.filter((item,index)=>{
+                    if(index==i){
+                        this.list.splice(i,1)
+                    }
+                })
+            },
+            add(){
+                if(this.name==''&&this.id=='')return
+                this.list.push({id:this.id,name:this.name})
+                this.name='';
+                this.id=""
+            }
+            
+        }
+    })
+    
+    let vm5=new Vue({
+        el:"#app5",
+        data:{},
+        components:{
+            mycom3:{
+                template:'#tmp2'
+            }
+        }
+    })
+    
+    let vm6=new Vue({
+        el:'#app6'
+    })
+    
+    let vm7=new Vue({
+        el:'#app7',
+        data:{
+            flag:true
+        }
+    })
+    
+    let vm8=new Vue({
+        el:'#app8',
+        data:{
+            comName:'login'
+        }
+    })
+    </script>
+</body>
+</html>

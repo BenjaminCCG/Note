@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+      <button id="btn">点击我</button>
+      <button id="btn2">二级</button>
+    <script>
+       window.onload=function(){
+         let btn=document.getElementById('btn')   
+         let btn2=document.getElementById('btn2')        
+         btn.onclick=function(){
+             console.log('0级');             
+         }
+         btn.onclick=function(){
+             console.log('0级a');             
+         }
+         btn2.addEventListener('click',function(){
+             console.log("a");             
+         })
+         function dom2(){
+             console.log("b");
+            }
+
+         btn2.addEventListener('click',dom2)
+        //removeEventListener() 事件解绑
+        btn2.removeEventListener('click',dom2) //第二个参数必须是函数名
+       }
+      
+    </script>
+</body>
+</html>

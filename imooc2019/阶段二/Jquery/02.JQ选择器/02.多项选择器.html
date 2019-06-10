@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <section id="first" class="div first">First div element</section>
+    <div>First after and Second before.</div>
+    <section id="second" class="div second">Second div element</section>
+    <div>Second after and Third before.</div>
+    <section id="third" class="div third">Third div element</section>
+    <script>
+        //多项选择器 :选中的数组会根据html  DOM结构的顺序排序   
+        // $('selector1,selector2,selectorN')
+        $(function(){
+            // var firstAndThird=$('#first,.third')
+            // console.log(firstAndThird);  
+            
+            // var objs=$('#first,div,.third')
+            // console.log(objs );
+
+            var objs=$('#first,div,.second')
+            console.log(objs );
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        window.onload=function(){ 
+            //replaceChild()           
+            // let list=document.getElementById("list");
+            // let li=document.createElement('li')
+            // li.innerHTML="4"
+            // let secondli=list.children[1]
+            // let returnli=list.replaceChild(li,secondli) //(新元素，旧元素)
+            // //返回值是旧元素
+            // console.log(returnli);   
+            
+            //cloneNode()
+            // let list=document.getElementById("list");
+            // let newlist=list.cloneNode(true)//深度复制，子节点也会复制
+            // // console.log(newlist);
+            // document.body.appendChild(newlist)//获取body元素:document.body
+
+            //normalize() 合并文本节点
+            // var div=document.createElement('div')
+            // var textNode=document.createTextNode('DOM探索')
+            // div.appendChild(textNode)  
+
+            // var textNode2=document.createTextNode('之节点操作篇')
+            // div.appendChild(textNode2) 
+
+            // document.body.appendChild(div)
+            // console.log(div.children);
+            // div.normalize()
+            // console.log(div.children);
+
+            
+            
+        }
+    </script>
+</body>
+</html>

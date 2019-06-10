@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    //写组件
+    class Parent extends React.Component{
+        constructor(...args){
+            super(...args)
+        }
+        
+        render(){  
+            let users=[
+                {ID:1,name:'blue',age:18},
+                {ID:3,name:'张三',age:25},
+                {ID:8,name:'李四',age:21}
+            ]
+            return (
+                  <ul>
+                  {users.map(user=>(
+                      <Child key={user.ID} name={user.name} age={user.age} />                    
+                  ))}                    
+                 </ul>
+
+            )
+        }
+    }
+
+    class Child extends React.Component{
+        constructor(...args){
+            super(...args)
+        }         
+        render(){              
+            return (
+                  <li>
+                    姓名:{this.props.name} <br/>
+                    年龄:{this.props.age}
+                 </li>
+            )
+        }
+    }
+    //输出组件
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Parent />,root)
+    </script>
+</body>
+</html>

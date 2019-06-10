@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>day1</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+     <div id="app">
+       <!-- navtive修饰符使组件可以直接使用原生事件 -->
+        <child @change='plus' :content='lalala' @click.native='handle'></child>
+        <child @change='plus'></child>
+        <div>{{math}}</div>
+     </div>
+
+     <script>
+       let child={
+         template:'<div @click="add">{{number}}{{content}}</div>',
+         props:{//组件参数校验
+          content:{
+            type:String,
+            required:false,//必传参数，父组件必须向子组件传的值
+            default:"default value",//如果父组件没有给子组件传值则有默认值 
+            validator(value){
+              //value为content传入的值
+              return value.length>4
+            }
+          }
+         },
+         data(){
+           return{
+              number:0,
+              step:2
+           }
+         },
+         methods: {
+           add(){
+              this.number+=this.step
+              this.$emit('change',this.step)
+           }
+         },
+       }
+       let vm=new Vue({
+         el:'#app',
+         data:{
+           math:0,
+           lalala:'false'
+         },
+         methods: {
+           plus(num){
+             this.math+=num
+           },
+           handle(){
+             console.log('hello');
+             
+           }
+         },
+         components:{
+           child
+         }
+       })
+     </script>
+  </body>
+</html>

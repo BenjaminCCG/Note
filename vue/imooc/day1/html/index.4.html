@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>作用域 插槽</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+     <div id="app">
+        <component :is='type'></component>
+        <button @click='change'>change</button>
+     </div>
+
+     <script>
+       Vue.component('one',{
+         template:'<div>one</div>'
+       })
+       Vue.component('two',{
+         template:'<div>two</div>'
+       })
+        let vm=new Vue({
+          el:'#app',
+          data:{
+            type:'one'
+          },
+          methods: {
+            change(){
+              this.type=this.type==='one'?this.type='two':this.type='one'
+            }
+          },
+        })
+     </script>
+  </body>
+</html>

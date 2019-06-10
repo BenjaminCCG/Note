@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <script>     
+       //navigator.userAgent
+       //识别浏览器名称、版本、引擎、操作系统
+    //    console.log(navigator.userAgent);
+    //检测浏览器类型
+    function getBrowser(){
+        //userAgent属性
+        var ex=navigator.userAgent.toLowerCase(),browser
+        if(ex.indexOf('msie')>-1){
+            browser="IE"
+        }else if(ex.indexOf('chrome')>-1){
+            browser="chrome"
+        }
+        return browser
+    }
+    let explorer=getBrowser();
+    console.log(explorer);
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/browser.js"></script>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">    
+       class Parent extends React.Component{
+           constructor(...args){
+               super(...args)
+               this.state={
+                   a:12
+               }
+               this.a=110
+           }
+
+           fn(){
+               //props渲染
+            //    this.setState({
+            //        a:this.state.a+1
+            //    })
+            this.a++
+            this.forceUpdate()//强制渲染
+           }
+
+           render() {
+               return (
+                   <div>
+                        <Child a={this.state.a} />
+                        <button onClick={this.fn.bind(this)}>+1</button>
+                   </div>
+               )
+           }
+       }
+
+
+       class Child extends React.Component{
+           constructor(...args){
+               super(...args)               
+           }
+           render() {
+               return (
+                   <div>
+                        {this.props.a}
+                   </div>
+               )
+           }
+       }
+
+       let root=document.getElementById('root')
+       ReactDOM.render(<Parent/>,root)
+    </script>
+</body>
+</html>

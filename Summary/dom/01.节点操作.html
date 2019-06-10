@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+          //1. document.createElement()
+          let li=document.createElement('li')
+          let a=document.createElement('a')
+          let list=document.getElementById('list')
+          list.appendChild(li)
+          //ele.insertBefore(newele,ele)
+          list.insertBefore(a,list.firstElementChild)
+          //2.document.createTextNode()
+          let txt=document.createTextNode('我是一个li标签')
+          let txt2=document.createTextNode('我是一个a标签')
+          li.appendChild(txt)
+          a.appendChild(txt2)
+
+          //docuement.removeChild()
+          list.removeChild(list.lastElementChild)
+          //3.子节点
+          //firstChild
+          console.log(list.firstChild);
+          //firstElementChild
+          console.log(list.firstElementChild);
+
+          //childNodes
+          console.log(list.childNodes);
+          //children
+          console.log(list.children);
+
+          //lastChild
+          console.log(list.lastChild);
+          //lastElementChild
+          console.log(list.lastElementChild);
+
+          //parentNode
+          console.log(li.parentNode);
+          
+          //nextElementSibling
+          console.log(list.children[1].nextElementSibling);
+
+          //previousElementSibling
+          console.log(list.children[1].previousElementSibling);
+             
+          //replaceChild(new,old) 替换元素
+          let i=document.createElement('i');
+          i.innerHTML='我是谁'
+          list.replaceChild(i,list.firstElementChild)
+
+
+          //js中滚动条距离用window.scrollY属性返回
+          //jq中用window.scrollTop()来返回
+          
+    </script>
+</body>
+</html>

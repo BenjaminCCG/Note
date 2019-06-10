@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    //写组件
+    class Cmp1 extends React.Component{
+        constructor(...args){
+            super(...args)
+        }
+        
+        render(){  
+            let span=<span>spannnnnn</span>
+            return (
+                 <div>
+                 组件1
+                 {span}
+                 </div>
+            )
+        }
+    }
+    //输出组件
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1 />,root)
+    </script>
+</body>
+</html>

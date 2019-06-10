@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //arguments:每个函数都有一个arguments对象的实例arguments，引用函数的实参
+//可以用数组下表方式引用arguments元素 
+    var x=0;
+    // function test(){
+    //     console.log(this.x)   
+    // }
+    var o={};
+    o.x=1;
+    o.m=function(){
+        console.log(this.x); 
+    }
+    o.m()//1
+    o.m.apply() //不设置默认指向window   0
+    o.m.apply(o)   // 1 
+    </script>
+</body>
+</html>

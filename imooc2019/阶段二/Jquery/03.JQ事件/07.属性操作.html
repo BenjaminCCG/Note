@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全屏的云南旅游相册</title>
+    <link rel="stylesheet" href="./css/sttyle.css">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <!-- <form action="javascript:alert('我被提交了')">
+        <input type="text">
+        <input type="button" value="按钮">
+        <button>提交</button>
+    </form> -->
+    <button class="obj">这个按钮点击没有效果</button>
+    <button class="bind">绑定</button>
+    <button class="unbind">取消绑定</button>
+    <button class="one">绑定一次</button>
+    <div title="good">第一个按钮被点击了</div>
+    <span></span>
+    <nav>
+        <a href="#">泸沽湖</a>
+        <a href="#">丽江古城</a>
+        <a href="#">茶马古道</a>
+        <a href="#">就这家·云逸客栈</a>
+        <a href="#">西双版纳</a>
+        <a href="#">云南红酒庄</a>
+        <a href="#">轿子雪山</a>
+        <a href="#">普者黑</a>
+        <a href="#">海埂大坝</a>
+        <a href="#">玉龙湾</a>
+        <a href="#">昆明郊野公园</a>
+        <a href="#">欧洲风琴小镇</a>
+    </nav>
+    <div>
+        <img src="./images/1.jpg">
+        <img src="./images/2.jpg">
+        <img src="./images/3.jpg">
+        <img src="./images/4.jpg">
+        <img src="./images/5.jpg">
+        <img src="./images/6.jpg">
+        <img src="./images/7.jpg">
+        <img src="./images/8.jpg">
+        <img src="./images/9.jpg">
+        <img src="./images/10.jpg">
+        <img src="./images/11.jpg">
+        <img src="./images/12.jpg">
+    </div>
+    <script>
+        $(function(){ 
+           //1.attr()元素属性的获取与设置
+        //    var div=$('div:first-of-type')
+        //    console.log(div.attr('title'));
+        //    //设置
+        //    div.attr('title','bad')
+        //    console.log(div.attr('title'));
+        //    //移除
+        //    div.removeAttr('title')
+
+
+        //    //2.类操作
+        //    //addClass()
+        //    $('.obj').addClass('btn1 btn2')
+        //     //removeClass()
+        //    $('.obj').removeClass('btn1')
+        //    //toggleClass()在添加删除之前来回切换
+        //    $('.obj').click(function(){
+        //     $(this).toggleClass('btn3')
+        //     //hasClass()返回布尔值，判断元素是否有该类           
+            
+        //    })
+
+
+           //3.元素的高宽
+            //width()  height()  返回内容区大小
+            //innerWidth()  innerHeight() 返回内容区+内边距区大小
+            //outerWidth()  outerHeight()  默认false 返回内容+内边距+边框大小 设置参数true 加上外边距大小
+
+
+            //4.offset()返回和设置元素相对文档的位置,返回结果不带单位
+            // console.log($('div:first-of-type').offset());
+            // //设置:参数可以是某个元素，将会移动到该元素的位置
+            // $('div:first-of-type').offset({
+            //     top:200,
+            //     left:200
+            // })
+
+            //5.position()返回相对于父元素的偏移位置，并不能设置
+            // console.log($('div:first-of-type').position());
+
+
+            //6.scrollTop()  scrollLeft()   设置页面滚动条位置需要设置html和body
+            $(window).on('scroll',function(){
+                console.log($(this).scrollTop());
+                
+            })
+            // console.log($('html,body').scrollTop(200));
+
+            //8.data()方法
+            //当为元素添加 data-*=''  属性时，可以通过 .data('*') 方法进行访问
+            
+        })        
+    </script>
+</body>
+</html>

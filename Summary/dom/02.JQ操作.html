@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: bisque;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div></div>
+    <script>
+         //查找与过滤
+         //1.find()
+         //2.children()
+         //3.parent()
+         //4.parents()
+         //4.prev()
+         //5.prevAll()
+         //6.next()
+         //7.nextAll()
+         //8.eq()
+         //9.siblings()
+         //10.filter()
+         //11.add()
+         //12.addBack()
+         $.each($('li'),(index,item)=>{
+             console.log(index,item);             
+         })
+         $('li').each((index,item)=>{
+             console.log(index,item);             
+         })
+        let bool=true
+         $('div').on('click',function(){             
+            //  if(bool){
+            //     $(this).animate({'left':'+=50px',opacity:0},500)
+            //  }else{
+            //     $(this).animate({'left':'+=50px',opacity:1},500)
+            //  }
+             
+             bool?$(this).animate({'left':'+=50px',opacity:0},500):$(this).animate({'left':'+=50px',opacity:1},500)
+             bool=!bool
+         })
+
+         //show() hide()
+
+         //fadeIn() fadeOut() fadeToggle()
+
+         //slideUp() slideDown()  slideToggle()
+    </script>
+
+</body>
+</html>

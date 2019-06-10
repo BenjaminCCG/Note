@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //String对象中与正则表达式相关的方法
+//search
+
+// var str='html js js'
+// var pattern=/js/g             //是否全局匹配无关系
+// console.log(str.search(pattern));//返回匹配到的第一个字符位置下标，未找到返回-1
+
+// var str='html js js'
+// console.log(str.search('js'));
+
+
+//match
+
+// var str='js js js';
+// var pattern=/(j)s/
+// console.log(str.match(pattern));
+
+//与exec不同之处:
+//1.match全局匹配时一次可以将所有匹配到的返回到一个数组内
+//2.match全局匹配不再返回()内的分组,match在非全局情况下才会返回分组中的内容
+// var str='js js js';
+// var pattern=/(j)s/g
+// console.log(str.match(pattern));
+
+// var str='1.js\n2.js\n3.js';
+// var pattern=/js/mg
+// console.log(str.match(pattern));
+
+
+// var str='1.js\n2.js\n3.js';
+// var pattern=/js$/mg   //m多行匹配需要在g全局匹配和限位符^ $ \b情况下才可以发挥功效
+// console.log(str);
+// console.log(str.match(pattern));
+
+
+// var str='js1\njs2\njs3';
+// var pattern=/^js/mg   //m多行匹配需要在g全局匹配和限位符^ $ \b情况下才可以发挥功效
+// console.log(str);
+// console.log(str.match(pattern));
+
+
+//split
+// var str='html,css,js'
+// console.log(str.split(','));
+
+
+// var str='html,css,js';
+// var pattern=/,/
+// console.log(str.split(pattern));
+
+// var str='html,  css ,  js';
+// var pattern=/\s*,\s*/
+// console.log(str.split(pattern));
+
+
+//replace
+// var str = 'I love js js'
+// console.log(str.replace('js','html')); 字符串只能替换一次
+
+// var str = 'I love js js';
+// var pattern=/js/g 
+// console.log(str.replace(pattern,'html'));
+
+
+// var str = '1111-11-11';
+// var pattern=/-/g
+// console.log(str.replace(pattern,'.'));
+
+// var str = 'I love js';
+// var pattern=/(js)/g
+// // console.log(str.replace(pattern,'$1'));
+// document.write(str.replace(pattern,'<strong style="color:red">$1</strong>'))   //此处$1 是指正则中的第一个分组 类似于\1
+
+var str='中国军队和阿扁一起办证';
+var pattern=/国军|阿扁|办证/g
+console.log(str.replace(pattern,function($0){ //$0指匹配到的字符
+        // console.log($0);
+        var result='';
+        for(var i=0;i<$0.length;i++){
+            result+='*'
+        }
+        return result
+}));
+
+    </script>
+</body>
+</html>

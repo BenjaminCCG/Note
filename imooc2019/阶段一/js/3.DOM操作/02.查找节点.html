@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <ul id="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    <script>
+        window.onload=function(){
+             var list=document.getElementById('list')
+             console.log(list.childNodes);  
+             //获取文档html根元素
+             var oHtml=document.documentElement 
+             var oHead=oHtml.firstChild
+             console.log(oHead);
+                       
+        }
+        //子节点
+        //firstChild()   lastChild()  childNodes[index]
+        //父节点
+        //parentNode() 
+        //同级节点
+        //nextSibling()下一个兄弟节点
+        //previousSibling上一个兄弟节点
+        //以上节点空格会当成文本节点返回(除父节点)
+
+        //子节点 
+        //firstElementChild()   lastElementChild()  children[index]
+        //父节点
+        //parentNode() 
+        //同级节点
+        //nextElementSibling()下一个兄弟节点
+        //previousElementSibling上一个兄弟节点
+
+        //childElementCount  子元素数量 不包括空白文本节点
+    </script>
+</body>
+</html>

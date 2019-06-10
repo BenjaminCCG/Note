@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/browser.js"></script>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //写组件
+        class Cmp1 extends React.Component{
+            constructor(...args){
+                super(...args)                
+            }
+
+            render(){
+              return (
+                  //style用json方式传参
+                  //json={color:'red'}
+                  <div>
+                    姓名:{this.props.name}<br/>
+                    年龄:{this.props.age+5}<br/>
+                    <span style={{color:'red'}}>aaaa</span>
+                  </div>
+              )
+            }
+        }
+        //用组件
+        let root=document.getElementById('root')
+        let c=18
+        ReactDOM.render(<Cmp1 name='blue' age={c} />,root)
+    </script>
+</body>
+</html>

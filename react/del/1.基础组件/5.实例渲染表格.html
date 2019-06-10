@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="./datas.js"></script>
+</head>
+<body>
+    
+   <div id="root"></div>
+   <script type="text/babel">
+   let datas=news["arr"];
+   let nav={
+       "guonei":"国内",
+       "guoji":"国际",
+       "war":"军事",
+       "shouye":"首页",
+   }
+   
+    class Table extends React.Component{
+        constructor(...args){
+            super(...args)
+        }
+        time(n) {
+       let today=new Date(n*1000)
+        function ten(t){
+            return t>=10?t:'0'+t;
+        }
+       return today.getFullYear()+'-'+ten(today.getMonth()+1)+'-'+ten(today.getDate())+'-'+ten(today.getHours())+'-'+ten(today.getMinutes())+'-'+ten(today.getSeconds())
+       
+   }
+        render(){  //调用组件的属性和方法需要加this
+        return (
+        <table className="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>发布时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {datas.map(item=>(
+                <tr key={item.ID}>
+                <td>{item.ID}</td>
+                <td>{item.content}</td>
+                <td>{nav[item.channerl]}</td>
+                <td>{this.time(item.time)}</td>                
+            </tr> 
+            ))}          
+        </tbody>
+    </table>
+            )
+        }
+    }
+    ReactDOM.render(<Table />,document.getElementById('root'))
+   </script>
+</body>
+</html>

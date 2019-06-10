@@ -1,0 +1,26 @@
+npm init -y 
+cnpm webpack webpack-cli -D
+(可选项 cnpm i jquery -S  装jq  引用 import $ from 'jquery'
+
+  cnpm i bootstrap -S 装bootstrap  引用  import 'bootstrap/dist/css/bootstrap.css')
+cnpm i webpack-dev-server -D  添加package.json  script对象   webpack.config.js 配置路径
+cnpm i html-webpack-plugin -D  webpack.config.js  导入插件  配置plugins
+cnpm i style-loader css-loader -D  webpack.config.js配置module -->rules
+cnpm i less less-loader -D 同上配置module -->rules
+cnpm i sass node-sass -D配置module -->rules
+cnpm i file-loader url-loader -D  处理url地址  配置module -->rules
+
+cnpm i babel-core babel-loader@7.1.5 babel-plugin-transform-runtime -D
+cnpm i babel-preset-env babel-preset-stage-0 -D    
+以上两个安装配置babel所需的包，安装完需要webpack.config.js  module-->ruls配置
+再新建 .babelrc的JSON文件进行配置  如果无效试试将babel-loader装成7.1.5版本
+
+在项目中使用vue 先下载vue包  cnpm i vue -S  然后再修改获取路径
+
+在runtime版本下运行
+cnpm i vue-loader@15.7.0 vue-template-compiler -D 安装能够解析.vue文件的包 并配置文件新增loader项
+且增加const VueLoaderPlugin = require('vue-loader/lib/plugin')
+plugins增加new VueLoaderPlugin()
+
+
+安装路由:cnpm i vue-router -S

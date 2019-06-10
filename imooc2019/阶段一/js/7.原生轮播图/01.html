@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100%;
+            height: 200px;
+            float: left;
+            display: none
+        }
+        div.active{
+            display: block
+        }
+        .one{
+            background-color: red;
+        }
+        .two{
+            background-color: green;
+        }
+        .three{
+            background-color: blue
+        }
+    </style>
+</head>
+<body>
+    <button>one</button>
+    <button>two</button>
+    <button>three</button>
+    <div class="one active"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <script>   
+        var btns=document.getElementsByTagName('button')
+        var divs=document.getElementsByTagName('div')
+        for(var i=0;i<btns.length;i++){
+            btns[i].index=i
+            console.log(btns.index);            
+            btns[i].onclick=function(){
+                for(var j=0;j<btns.length;j++){
+                    divs[j].style.display='none'
+                }
+                divs[this.index].style.display='block'
+            }
+        }
+    </script>
+</body>
+</html>

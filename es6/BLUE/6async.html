@@ -1,0 +1,25 @@
+<!-- //普通函数一直执行，直到结束
+//async函数能够暂停 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        $(function(){
+            async function show(){
+            let a=12;
+            let b=5;
+            
+            let data=await $.ajax({url:"./json.txt",dataType:"json"});
+            alert(a+b+data[0])
+        }
+        })
+    </script>
+</body>
+</html>

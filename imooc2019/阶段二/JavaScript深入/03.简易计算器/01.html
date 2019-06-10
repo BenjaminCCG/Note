@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ip1">
+    <span id="sp">+</span>
+    <input type="text" id="ip2">
+    =
+    <i id="result"></i>
+    <div>
+        <button id="btn1">+</button>
+        <button id="btn2">-</button>
+        <button id="btn3">*</button>
+        <button id="btn4">/</button>
+    </div>
+    <script>
+        let ip1=document.getElementById('ip1');        
+        let ip2=document.getElementById('ip2')
+        let sp=document.getElementById('sp')
+        let result=document.getElementById('result')
+        let btn1=document.getElementById('btn1')
+        let btn2=document.getElementById('btn2')
+        let btn3=document.getElementById('btn3')
+        let btn4=document.getElementById('btn4')
+        btn1.addEventListener('click',function(){
+            sp.innerHTML='+'             
+            result.innerHTML=parseInt(ip1.value)+parseInt(ip2.value)
+        })
+        btn2.addEventListener('click',function(){
+            sp.innerHTML='-'             
+            result.innerHTML=parseInt(ip1.value)-parseInt(ip2.value)
+        })
+        btn3.addEventListener('click',function(){
+            sp.innerHTML='*'             
+            result.innerHTML=parseInt(ip1.value)*parseInt(ip2.value)
+        })
+        btn4.addEventListener('click',function(){
+            sp.innerHTML='/'             
+            result.innerHTML=parseInt(ip1.value)/parseInt(ip2.value)
+        })
+    </script>
+</body>
+</html>

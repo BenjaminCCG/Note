@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    //写组件
+    class Cmp1 extends React.Component{
+        constructor(...args){
+            super(...args)
+        }
+        
+        render(){    //    <span style="color:red">文字</span>这种语法不可 
+                    //  设置style样式需要使用json格式
+                    let json={color:"red"} 
+            return <div>
+                    <span style={{color:"red"}}>文字</span>
+                    </div>
+        }
+    }
+    //用组件
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1></Cmp1>,root)
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <aside>
+        <details>
+            <summary>网站后端</summary>
+            <ul>
+                <li>Asp</li>
+                <li>Jsp</li>
+                <li>PHP</li>
+                <li>Python</li>
+                <li>Golang</li>
+                <li>Node</li>
+            </ul>
+        </details>
+        <details>
+            <summary>网站前端</summary>
+            <details>
+                <summary>JQUERY</summary>
+                <ul>
+                    <li>Asp</li>
+                    <li>Jsp</li>
+                    <li>PHP</li>
+                    <li>Python</li>
+                    <li>Golang</li>
+                    <li>Node</li>
+                </ul>
+            </details>
+            <details>
+                <summary>JAVASCRIPT</summary>
+                <ul>
+                    <li>Asp</li>
+                    <li>Jsp</li>
+                    <li>PHP</li>
+                    <li>Python</li>
+                    <li>Golang</li>
+                    <li>Node</li>
+                </ul>
+            </details>
+            <ul>
+                <li>Asp</li>
+                <li>Jsp</li>
+                <li>PHP</li>
+                <li>Python</li>
+                <li>Golang</li>
+                <li>Node</li>
+            </ul>
+        </details>
+    </aside>
+    <script>
+        //层级选择器
+        $(function(){
+            //1.祖先后代选择器
+        //   var sums=  $('details details summary')
+        //   console.log(sums.css('color','red'));  
+
+          //2.子选择器 $('parent>child)
+            // var details=$('aside>details')
+            // console.log(details);
+
+            //3.兄弟选择器 $('prev+next') 只选择prev后的一个
+        //    var uls= $('summary+ul')
+        //     console.log(uls);
+
+            // var details= $('summary+details')
+            // console.log(details);
+            
+            //4.相邻选择器 $('prev~next') 选择prev后的所有同级
+
+            var uls= $('summary~ul')
+            console.log(uls);
+
+            var details= $('summary~details')
+            console.log(details);
+        })
+    </script>
+</body>
+</html>

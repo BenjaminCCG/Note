@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id ="root"></div>
+
+    <script type="text/babel">
+   class Cmp1 extends React.Component{
+       constructor(...args){
+           super(...args)
+           this.a=12;
+       }
+       fn(){
+            // alert(this)   undefined
+            // this.a++  
+            //console.log(this);  //当添加bind(this) 此时指向的是组件实例 !!!!
+            // this.a++    此时点击事件触发a值递增，但页面没有渲染
+            //组件事件配合状态，而不是属性
+       }
+       render(){
+           return (
+               <div>
+                {this.a}
+                <input type='button' value='+1' onClick={this.fn.bind(this)} />                
+                </div>
+           )
+       }
+   }
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1 />,root)
+    </script>
+</body>
+</html>

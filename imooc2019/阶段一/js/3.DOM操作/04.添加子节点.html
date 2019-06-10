@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        window.onload=function(){
+            //appendChild()
+            // let list=document.getElementById("list");
+            // let li=document.createElement('li')
+            // let firstli=list.firstElementChild
+            // li.innerHTML="4"
+            // list.appendChild(li)
+            // list.appendChild(firstli)//原dom元素会移动至末尾
+
+            //insertBefore()
+            let list=document.getElementById("list");
+            let li=document.createElement('li')
+            li.innerHTML="4"
+            let secondli=list.children[1]
+            // console.log(secondli);
+            
+            // list.insertBefore(li,secondli)//(新元素，在目标元素前插入)
+            list.insertBefore(li,null) //第二个参数为null效果与appendChild效果相同
+        }
+    </script>
+</body>
+</html>

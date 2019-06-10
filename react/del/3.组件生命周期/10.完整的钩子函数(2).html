@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id ="root"></div>
+
+    <script type="text/babel">
+ class Parent extends React.Component{    
+       constructor(...args){                    
+           super(...args)                          
+            this.state={
+                id:1 
+            }
+       }       
+       
+     next(){
+         this.setState({
+             id:this.state.id+1
+         })
+     }
+       render(){       
+           return (
+               <div> 
+               <input type="button" value="下一个" onClick={this.next.bind(this)} />
+                   <Child id={this.state.id} />                                
+                </div>
+           )
+       }
+   }
+   class Child extends React.Component{    
+       constructor(...args){                    
+           super(...args)
+           this.state={
+               name:"",
+               age:'' 
+           }                          
+        
+       }   
+       
+       shouldComponentUpdate(nextProps,nextState){
+        //   console.log(nextProps,nextState );
+
+          return (
+              //条件1.属性变了(来自父级)
+            nextProps.id!=this.props.id ||
+            //条件2.状态变了(来自自己)
+            nextState.name!=this.state.name
+          )
+          
+       }
+        loadDate(id){
+            fetch(`./data${id}.txt`).then(res=>{   //需要本地服务器环境
+                res.json().then(data=>{
+                    this.setState(data)
+                })
+            })
+        }
+      componentDidMount(){
+         console.log();
+         this.loadDate(this.props.id)   
+         
+     }
+     componentDidUpdate(){                   //不要在didMount和didUpdate中修改state
+         console.log();                      //父级修改props属性渲染元素触发didUpdate，触发this.setState修改state
+         this.loadDate(this.props.id)         //导致无限触发didUpdate，无限渲染
+     }
+       render(){       
+        console.log("渲染了");
+        
+           return (
+               <div>                     
+                     {this.props.id}  <br />    
+                     用户名:{this.state.name} ,年龄:{this.state.age}
+                </div>
+           )
+       }
+   }
+
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Parent />,root)
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="#"></a>
+    <div url="http://www.baidu.com" xxx="aaa"></div>
+    <script>
+        var a=document.getElementsByTagName('a')[0]
+        a.href="/index.html"
+        var div=document.getElementsByTagName("div")[0]
+        console.log(div.attributes);
+        console.log(div.getAttribute('xxx'));
+        //自定义属性通过.方式获取不到
+        //attributes只能访问元素标签上的显示属性    
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全屏的云南旅游相册</title>
+    <link rel="stylesheet" href="./css/sttyle.css">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <!-- <form action="javascript:alert('我被提交了')">
+        <input type="text">
+        <input type="button" value="按钮">
+        <button>提交</button>
+    </form> -->
+    <span></span>
+    <nav>
+        <a href="#">泸沽湖</a>
+        <a href="#">丽江古城</a>
+        <a href="#">茶马古道</a>
+        <a href="#">就这家·云逸客栈</a>
+        <a href="#">西双版纳</a>
+        <a href="#">云南红酒庄</a>
+        <a href="#">轿子雪山</a>
+        <a href="#">普者黑</a>
+        <a href="#">海埂大坝</a>
+        <a href="#">玉龙湾</a>
+        <a href="#">昆明郊野公园</a>
+        <a href="#">欧洲风琴小镇</a>
+    </nav>
+    <div>
+        <img src="./images/1.jpg">
+        <img src="./images/2.jpg">
+        <img src="./images/3.jpg">
+        <img src="./images/4.jpg">
+        <img src="./images/5.jpg">
+        <img src="./images/6.jpg">
+        <img src="./images/7.jpg">
+        <img src="./images/8.jpg">
+        <img src="./images/9.jpg">
+        <img src="./images/10.jpg">
+        <img src="./images/11.jpg">
+        <img src="./images/12.jpg">
+    </div>
+    <script>
+        $(function(){   
+            $('a').click('abc',function(event){
+                //1.event.type  返回触发事件名称
+                // console.log(event.type);
+                // //2.event.target  返回触发事件DOM元素
+                // console.log(event.target);
+                // //3.event.data  返回function前添加的额外数据，可以是任何数据类型
+                // console.log(event.data);
+                // //4.pageY,clientY,screenY,offsetY
+                // //5.event.which 返回键盘鼠标按下去的编码
+                // console.log(event.which);
+                console.log('i am a link ');
+                event.stopPropagation()
+                //方法:
+                //1.event.preventDefault()阻止事件的默认动作
+                //2.event.stopPropagation()阻止事件冒泡
+                //3.event.stopImmediatePropagation()阻止剩余事件处理函数并且阻止事件冒泡
+                //4.return false可以阻止以上所有
+            })
+
+            $('nav').click(function(){
+                console.log('i am nav');
+                
+            })
+        })        
+    </script>
+</body>
+</html>

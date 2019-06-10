@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-3.3.1.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        //apply(，[])和call(,,,)方法运用，修改某个方法中的this的指向
+        window.a='one';
+        document.a='two';
+        let obj={a:'three'}
+        function fn(){
+            console.log(this.a);            
+        }
+        fn.call() //默认值是window
+        fn.call(window)    
+        fn.call(document)
+        fn.call(obj)
+
+        fn.apply() //默认值是window
+        fn.apply(window)    
+        fn.apply(document)
+        fn.apply(obj)
+
+        let arr=['orange','apple','pear']
+        $.each(arr,(index,value)=>{
+            console.log(index,value);            
+        })
+        $('li').each((index,item)=>{
+            console.log(index,item);
+        })
+
+        function pro(){
+            return new Promise((resolve,reject)=>{
+                $.ajax({
+                    url:'./json.json',
+                    type:'get',
+                    dataType:'json',
+                    success:data=>{
+                        resolve(data)
+                    },
+                    error:e=>{
+                        reject(e)
+                    }
+                })
+            })
+        }
+        console.log(pro());
+        pro().then(data=>{
+            console.log(data);            
+        }
+        // ,e=>{
+        //     throw Error('我也不知道该怎么办')
+        // }
+        ).catch(e=>{
+            throw Error('我也不知道该怎么办')
+        }).finally(()=>{
+            console.log('这武器必死');            
+        })
+
+
+        //Promise.all()
+        // Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值。
+        function pic(){
+            return new Promise((resolve,reject)=>{
+                $.ajax({
+                    url:'./json.json',
+                    type:'get',
+                    dataType:'json',
+                    success:res=>{
+                        resolve(res)
+                    },
+                    error:e=>{
+                        reject(e)
+                    }
+                })
+            })
+        }
+        // let url=null;
+        pic().then(res=>{
+            let url=res.data
+            function loadImg(image){
+                return  new Promise((res,rej)=>{
+                    let img=new Image();
+                    img.src=image; 
+                    img.onload=()=>{
+                        res(img)
+                    } 
+                    img.onerror=e=>{
+                        rej(e)
+                    }
+                })              
+            } 
+           
+            
+         
+            
+        Promise.all(url.map(item=>loadImg(item))).then(arr=>{
+            console.log(arr);
+            
+            arr.forEach(item=>{
+                document.body.appendChild(item)
+            })
+        }).catch(()=>{
+            throw Error('这是为什么呢')
+        })  
+        
+
+        // 顾名思义，Promse.race就是赛跑的意思，意思就是说，Promise.race()里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。
+        // Promise.race(url.map(item=>loadImg(item))).then(res=>{
+        //     document.body.appendChild(res)
+        // })
+            
+        })
+        
+        
+        
+    </script>
+</body>
+</html>

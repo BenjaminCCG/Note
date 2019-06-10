@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>插槽</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+     <div id="app">
+        <child>
+          <p slot='head'>world</p>
+          <p slot='foot'>dell</p>
+        </child>
+     </div>
+
+     <script>
+       let Bus=new Vue()
+       Vue.component('child',{
+         template:'<div><slot name="head">默认内容</slot><p>hello</p><slot name="foot">默认内容</slot></div>',
+        
+         data(){
+           return {
+            
+           }
+         },
+        
+       })
+
+       let vm=new Vue({
+          el:'#app',
+       })
+     </script>
+  </body>
+</html>

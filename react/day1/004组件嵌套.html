@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/browser.js"></script>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">    
+        class Cmp1 extends React.Component{
+            constructor(...args){
+                super(...args)                
+            }
+            render(){
+                let span=<span>spannnnnnnn</span>
+                let arr=[
+                    <div key={1}>aaa</div>,
+                    <div key={2}>bbb</div>,
+                    <div key={3}>ccc</div>
+                ]
+                let arr1=[12,5,8]
+
+                let aDiv=arr1.map((item,index)=><div key={index}>{item}</div>)
+              return (
+               <div>组件1
+                {span}
+                {arr}
+                {aDiv}
+               </div>
+              )
+            }
+        }
+        let a=<Cmp1 />
+        //用组件
+        let root=document.getElementById('root')
+        let c=18
+        ReactDOM.render(<div>aaa{a}</div>,root)
+    </script>
+</body>
+</html>

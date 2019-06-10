@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>非父子组件传值/发布订阅模式</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+     <div id="app">
+        <child content='hello'></child>
+        <div></div>
+        <child content='world'></child>
+     </div>
+
+     <script>
+       let Bus=new Vue()
+       Vue.component('child',{
+         template:'<div @click="handle">{{childContent}}</div>',
+         props:['content'],
+         data(){
+           return {
+             childContent:this.content
+           }
+         },
+         methods: {
+           handle(){
+            Bus.$emit('change',this.childContent)
+           }
+         },
+         mounted() {
+           let _this=this
+           Bus.$on('change',function(msg){
+            _this.childContent=msg
+            console.log(111);
+            
+           })
+         },
+       })
+
+       let vm=new Vue({
+          el:'#app',
+       })
+     </script>
+  </body>
+</html>

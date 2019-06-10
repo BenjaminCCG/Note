@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    //写组件
+    class Cmp1 extends React.Component{//1.必有，且类名首字母需要大写，小写会被当成html标签
+        constructor(...args){//2.必有
+            super(...args)
+            this.b=12
+        }
+        fn(){
+            return 55+88
+        }
+        render(){           //3.必有
+        let a=12;
+        let name='blue';
+        let age=18;
+            return <div>
+            姓名:{name} ,年龄{age}     
+
+                a={a};   b={this.b}
+                 
+                c={this.fn()}
+                    </div>//花括号代表输出    //Cmp1的属性 this.b
+        }
+    }
+    //用组件
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1></Cmp1>,root)
+    </script>
+</body>
+</html>

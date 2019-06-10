@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            --color:red;
+            --large-font:36px;
+        }
+        header{
+            color:var(--color)
+        }
+    </style>
+</head>
+<body>
+    <header>我是header</header>
+    <section>我是section</section>
+    <nav>我是nav</nav>
+    <aside>我是aside</aside>
+</body>
+</html>
+
+<!-- 一、变量的声明
+声明变量的时候，变量名前面要加两根连词线（--）
+
+body {
+    --foo: #7F583F;
+    --bar: #F7EFD2;
+  }
+
+  二、var() 函数
+var()函数用于读取变量。
+a {
+  color: var(--foo);
+  text-decoration-color: var(--bar);
+}
+
+var()函数还可以使用第二个参数，表示变量的默认值。如果该变量不存在，就会使用这个默认值。
+color: var(--foo, #7F583F)
+
+
+注意，变量值只能用作属性值，不能用作属性名。
+
+三、变量值的类型
+如果变量值是一个字符串，可以与其他字符串拼接。
+--bar: 'hello';
+--foo: var(--bar)' world';
+
+body:after {
+  content: '--screen-category : 'var(--screen-category);
+}
+
+
+如果变量值是数值，不能与数值单位直接连用。
+.foo {
+  --gap: 20;
+  /* 无效 */
+  margin-top: var(--gap)px;
+}
+上面代码中，数值与单位直接写在一起，这是无效的。必须使用calc()函数，将它们连接。
+.foo {
+  --gap: 20;
+  margin-top: calc(var(--gap) * 1px);
+}
+
+
+
+如果变量值带有单位，就不能写成字符串。
+/* 无效 */
+.foo {
+  --foo: '20px';
+  font-size: var(--foo);
+}
+
+/* 有效 */
+.foo {
+  --foo: 20px;
+  font-size: var(--foo);
+} -->

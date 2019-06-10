@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./down/vuejs.js"></script>
+    <script src="./down/vue-resource.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加品牌</h3>
+            </div>
+            <div class="panel-body form-inline">
+                <label>
+                    Id:
+                    <input type="text" class="form-control" v-model="id">
+                </label>
+                <label>
+                    Name:
+                    <input type="text" class="form-control" v-model="name">
+                </label>
+                <!-- 在vue中使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以为函数传参了 -->
+                <input type="button" value="添加" class="btn btn-primary" @click="add()">
+                <label>
+                    搜索名称关键字:
+                    <input type="text" class="form-control" v-model='keywords' v-focus v-color="'blue'">
+                </label>
+            </div>
+        </div>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Opertion</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr v-for="item in search(keywords)" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.ctime|dateFormat}}</td>
+                    <td>
+                        <a href="" @click.prevent='del(item.id)'>删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="app2" v-color="'pink'" v-fontweight="'600'" v-fontsize="'50'">
+        {{dt|dateFormat}}
+    </div>
+    <div id="app3">
+        {{msg|word('蝙蝠侠','和蜘蛛侠')|eav}}
+    </div>
+    <div id="app4">
+        <button @click="msg='no'">修改msg</button>
+        <p id="piglet">{{msg}}</p>
+    </div>
+
+    <div id="app5">
+        <input type="button" value="get请求" @click="getInfo">
+        <input type="button" value="post请求" @click="postInfo">
+    </div>
+    <script>  
+    Vue.directive('focus',{
+        bind(el){},
+        inserted(el){
+            el.focus()           
+        },
+        updated(){}
+    })
+
+    Vue.directive('color',{
+        bind(el,binding){
+            // console.log(binding)
+            el.style.color=binding.value;
+        },
+        inserted(el,binding){
+            console.log(binding);            
+        },
+        updated(){}
+    })
+
+    Vue.filter('word',(dataStr,arg,arg2)=>{
+        return dataStr.replace(/我/g,arg+arg2)
+    })
+    
+   Vue.filter('dateFormat',(dataStr,pattern='')=>{
+       console.log(dataStr);  //dataStr是管道符前面传过来的数据     
+       let dt=dataStr
+       let y=dt.getFullYear();
+       let m=dt.getMonth()+1;
+       let d=dt.getDate()
+
+       if(pattern.toLowerCase()==='yyyy-mm-dd'){
+           return `${y}-${m}-${d}`
+       }else{
+           let hh=dt.getHours();
+           let mm=dt.getMinutes();
+           let ss=dt.getSeconds()
+           return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+       }
+   }) 
+
+
+
+    var vm=new Vue({
+            el:  "#app",
+             data:{
+                 list:[
+                     {id:1,name:"奔驰",ctime:new Date()},
+                     {id:2,name:"宝马",ctime:new Date()}
+                 ],
+                 id:"",
+                 name:"",
+                 keywords:''
+             },
+             methods:{
+                 add(){
+                    let car={id:this.id,name:this.name,ctime:new Date()}
+                    this.list.push(car)
+                    this.id=this.name=''
+                 },
+                 del(id){
+                    let index=this.list.findIndex(item=>{
+                        if(item.id==id){                            
+                            return true
+                        }
+                    })
+                    this.list.splice(index,1)                    
+                 },
+                 search(keywords){                    
+                     return this.list.filter(item=>{                        
+                        if(item.name.includes(keywords)){
+                            return item
+                        }
+                    })
+                 }
+             }
+        })
+
+    let vm2=new Vue({
+        el:'#app2',
+        data:{
+            dt:new Date()
+        },
+        filters:{
+            dateFormat(dataStr,pattern=''){
+                let dt=new Date();
+                let y=dt.getFullYear();
+                let m=(dt.getMonth()+1).toString().padStart(2,0);
+                let d=dt.getDate().toString().padStart(2,0);
+
+                if(pattern.toLowerCase()==='yyyy-mm-dd'){
+                    return `${y}-${m}-${d}`
+                }else{
+                let hh=dt.getHours().toString().padStart(2,0);
+                let mm=dt.getMinutes().toString().padStart(2,0);
+                let ss=dt.getSeconds().toString().padStart(2,0)
+                return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+       }
+            }
+        },
+        directives:{
+            fontweight:{
+                bind(el,binding){
+                    el.style.fontWeight=binding.value;
+                }
+            },
+            fontsize:{
+                bind(el,binding){
+                    el.style.fontSize=binding.value+'px';
+                }
+            }
+        }
+    })
+
+    let vm3=new Vue({
+        el:'#app3',
+        data:{
+            msg:'我不卖豆腐豆腐豆腐豆腐，我只在你吹弹可破的肌肤上试练我功夫'
+        },
+        filters:{
+            eav(dataStr){
+                return dataStr+='--------《周大侠》'
+            }
+        }
+    })
+    
+    let vm4=new Vue({
+        el:"#app4",
+        data:{
+            msg:'yes'
+        },
+        methods:{
+            show(){
+                console.log('我的大刀早已饥渴难耐了');                
+            }
+        },
+        beforeCreate() {
+            console.log(this.msg);//undefined
+            // this.show()        报错！还未初始化      
+        },
+        created() {
+            console.log(this.msg);
+            this.show()              
+        },
+        beforeMount() {
+            console.log(document.getElementById('piglet').innerHTML);            
+        },
+        mounted() {
+            console.log(document.getElementById('piglet').innerHTML); 
+        },
+        beforeUpdate() {
+            console.log('页面上的内容是'+document.getElementById('piglet').innerHTML);
+            console.log('msg中的内容是'+this.msg); 
+        },
+        updated() {
+            console.log('页面上的内容是'+document.getElementById('piglet').innerHTML);
+            console.log('msg中的内容是'+this.msg); 
+        },
+        beforeDestroy() {
+            
+        },
+        destroyed() {
+            
+        },
+    })
+   
+    let vm5=new Vue({
+        el:'#app5',
+        methods:{
+            getInfo(){
+                this.$http.get('http://kerys.pythonanywhere.com/api/getprodlist/').then(result=>{
+                    console.log(result.body.message);                    
+                })
+            },
+            postInfo(){
+                this.$http.post('http://kerys.pythonanywhere.com/api/addprod/',{},{emulateJSON:true}).then(result=>{
+                    console.log(result.body);                    
+                })
+            }
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div>
+            用户名 <input type="text" id="userAccount">
+            <p class="item"></p>
+        </div>
+        <div>
+            密码 <input type="text" id="userPass">
+            <p class="item"></p>
+        </div>
+        <div>
+            确认密码 <input type="text" id="userPass_">
+            <p class="item"></p>
+        </div>
+        <div>
+            姓名 <input type="text" id="userName">
+            <p class="item"></p>
+        </div>
+        <div>
+            身份证号 <input type="text" id="information">
+            <p class="item"></p>
+        </div>
+        <div>
+            邮箱 <input type="text" id="email">
+            <p class="item"></p>
+        </div>
+        <div>
+            手机号 <input type="text" id="telephone">
+            <p class="item"></p>
+        </div>
+    <input type="submit" id="handup" value="提交">
+    </form>
+    <script>
+        var reg=/正则/;
+        var userAccount=document.getElementById('userAccount');
+        var userPass=document.getElementById('userPass');
+        var userPass_=document.getElementById('userPass_');
+        var userName=document.getElementById('userName');
+        var information=document.getElementById('information');
+        var email=document.getElementById('email');
+        var telephone=document.getElementById('telephone');
+        var handup=document.getElementById('handup');
+        var test1=false;
+        var test2=false;
+        var test3=false;
+        var test4=false;
+        var test5=false;
+        var test6=false;
+        var test7=false;
+        var items=document.querySelectorAll('.item');
+        //当鼠标离开用户名输入框，产生验证
+        userAccount.onblur=function(){
+                var reg=/^\w{6,18}$/;
+                if(this.value==""){
+                    items[0].innerHTML="用户名称不能为空";
+                    items[0].style.color="red"
+                }else{
+                    if(!reg.exec(userAccount.value)){
+                        items[0].innerHTML='请输入6-18数字、字母、_';
+                        items[0].style.color="red"
+                    }else{
+                        items[0].innerHTML='格式正确';
+                        items[0].style.color="green";
+                        test1=true;
+                    }
+                }
+        }
+        userPass.onfocus=function(){
+                items[1].innerHTML="请输入6-18数字、字母、_'";
+                items[1].style.color="green"
+            }
+        userPass.onblur=function(){
+            var reg=/^\w{6,18}$/;
+                if(this.value==""){
+                    items[1].innerHTML="密码不能为空";
+                    items[1].style.color="red"
+                }else{
+                    if(!reg.exec(userPass.value)){
+                        items[1].innerHTML='请输入6-18数字、字母、_';
+                        items[1].style.color="red"
+                    }else{
+                        items[1].innerHTML='密码格式正确';
+                        items[1].style.color="green";
+                        test2=true;
+                    }
+                }
+        }
+         
+        userPass_.onfocus=function(){
+                items[2].innerHTML="请确认两次密码一致";
+                items[2].style.color="green"
+            }
+        userPass_.onblur=function(){           
+                if(this.value==""){
+                    items[2].innerHTML="确认密码不能为空";
+                    items[2].style.color="red"
+                }else{
+                    if(this.value!=userPass.value){
+                        items[2].innerHTML="两次密码不同";
+                        items[2].style.color="red" 
+                    }else{
+                        items[2].innerHTML="确认密码正确";
+                        items[2].style.color="green"
+                        test3=true;
+                    }
+                }
+        }
+        userName.onfocus=function(){
+                items[3].innerHTML="请输入中文姓名";
+                items[3].style.color="green"
+            }
+        userName.onblur=function(){ 
+            var reg=/^[\u4e00-\u9fa5]{2,5}$/;          
+                if(this.value==""){
+                    items[3].innerHTML="姓名不能为空";
+                    items[3].style.color="red"
+                }else{
+                    if(!reg.exec(userName.value)){
+                        items[3].innerHTML="请输入正确的中文姓名";
+                        items[3].style.color="red" 
+                    }else{
+                        items[3].innerHTML="姓名正确";
+                        items[3].style.color="green"
+                        test4=true;
+                    }
+                }
+        }
+
+        information.onfocus=function(){
+                items[4].innerHTML="请输入身份证号码";
+                items[4].style.color="green"
+            }
+        information.onblur=function(){ 
+            var reg=/^\d{17}[0-9x]$/;          
+                if(this.value==""){
+                    items[4].innerHTML="身份证不能为空";
+                    items[4].style.color="red"
+                }else{
+                    if(!reg.exec(this.value)){
+                        items[4].innerHTML="身份证格式不对";
+                        items[4].style.color="red" 
+                    }else{
+                        items[4].innerHTML="身份证正确";
+                        items[4].style.color="green"
+                        test5=true;
+                    }
+                }
+        }
+
+        email.onfocus=function(){
+                items[5].innerHTML="请输入邮箱";
+                items[5].style.color="green"
+            }
+        email.onblur=function(){ 
+        var reg=/^\w+@\w+\.[a-zA-Z_]{2,4}$/;          
+            if(this.value==""){
+                items[5].innerHTML="邮箱不能为空";
+                items[5].style.color="red"
+            }else{
+                if(!reg.exec(this.value)){
+                    items[5].innerHTML="邮箱格式不对";
+                    items[5].style.color="red" 
+                }else{
+                    items[5].innerHTML="邮箱正确";
+                    items[5].style.color="green"
+                    test6=true;
+                }
+            }
+        }
+
+        telephone.onfocus=function(){
+                items[6].innerHTML="请输入手机号码";
+                items[6].style.color="green"
+            }
+        telephone.onblur=function(){ 
+             var reg=/^\d{11}$/;          
+            if(this.value==""){
+                items[6].innerHTML="手机号码不能为空";
+                items[6].style.color="red"
+            }else{
+                if(!reg.exec(this.value)){
+                    items[6].innerHTML="手机号码格式不对";
+                    items[6].style.color="red" 
+                }else{
+                    items[6].innerHTML="手机号码正确";
+                    items[6].style.color="green"
+                    test7=true;
+                }
+            }
+        }
+        //注册时必须所有项都被填写正确
+        handup.onclick=function(){
+            if(test1==false||test2==false||test3==false||test4==false||test5==false||test6==false||test7==false){
+            alert('您填写的信息有误')
+        }else{
+            alert('确认提交')
+        }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            padding:20px 0;
+            background-color: #ccc
+        }
+        #mydiv{
+            width: 500px;
+            height: 500px;
+            background-color:lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input">
+    <div id="div">
+            <button id="btn">点击我</button>
+    </div>
+    <div id="mydiv"></div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <script>
+        
+        window.onload=function(){
+            window.addEventListener('resize',function(){
+            console.log(document.documentElement);            
+        })
+        window.addEventListener('scroll',function(){
+                console.log(document.body.screenTop||document.documentElement.scrollTop);                
+            })
+            //1.blur 失去焦点
+        let input=document.getElementById('input')
+        input.addEventListener('blur',function(){
+            alert('hello')
+        })
+        //2.focus  不支持冒泡
+        input.addEventListener('focus',function(){
+            console.log('hello');            
+        })
+        //3.focusin  和focus 相同 但是支持冒泡
+        //4.focusout  和blur 相同 但是支持冒泡
+        //5.dblclick 鼠标双击事件
+        let btn=document.getElementById('btn')
+        let div=document.getElementById('div')
+        let mydiv=document.getElementById('mydiv')
+        btn.addEventListener('dblclick',function(){
+            console.log(1111111111);            
+        })  
+        
+         //mouseout  mouseover  只有进入其子元素或者离开其子元素目标元素才触发
+         // mouseenter  mouseleave  只有进入或者离开目标元素才触发
+         div.addEventListener('mouseover',function(){
+             console.log("进入");             
+         })
+         div.addEventListener('mouseout',function(){
+             console.log("离开");             
+         })
+        //  div.addEventListener('mouseenter',function(){
+        //      console.log("enter");             
+        //  })
+        //  div.addEventListener('mouseleave',function(){
+        //      console.log("leave");             
+        //  })
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../JQ/jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner{
+            width: 600px;
+            height: 338px;
+            overflow: hidden;
+            position: relative;
+            margin: 50px auto;
+        }
+        .banner a{
+            display: block;
+            float: left;
+            width: 600px;
+            height: 338px;
+        }
+        .banner a img{
+            display: block;
+            width: 600px;
+            height: 338px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button id="btn">点</button>
+    <ul id="ul"></ul> -->
+    <div class="banner" id="banner"></div>
+    <div class="banner" id="banner_jq"></div>
+    <script>
+        //封装通用xhr对象，兼容各个版本
+        
+            window.onload=function(){
+                var btn=document.getElementById('btn');
+                var ul=document.getElementById('ul');
+                // btn.onclick=function(){                   
+                    
+                    var xhr=new XMLHttpRequest();
+                xhr.open('get','./server/slider.json')
+                xhr.send(null)
+                xhr.onreadystatechange=function(){                  
+                if(xhr.readyState===4){                    
+                    if((xhr.status>=200&&xhr.status<300)||xhr.status===304){  
+                        var data=JSON.parse(xhr.responseText)                    
+                        // var json=JSON.parse(xhr.responseText).slider
+                        // for(var i=0;i<json.length;i++){
+                        //     var li='li'+i;
+                        //     li=document.createElement('li')
+                        //     ul.appendChild(li)
+                        //     li.innerHTML=JSON.stringify(json[i])
+                        // }
+                               renderDataToDom()             
+                    }else{
+                        console.log(xhr.statusText);                        
+                    }
+                }
+                function renderDataToDom(){
+                    var img=data.slider,i,
+                        len=img.length,str="",
+                        banner=document.getElementById('banner')
+                    for(i=0;i<len;i++){
+                        // console.log(img[i]);
+                       str+='<a href="'+img[i].linkUrl+'"><img src="'+img[i].picUrl+'"></a>'
+                    }
+                    banner.innerHTML=str
+                    
+                }
+                }
+                // }
+                $.ajax({
+                    url:'./server/slider.json',
+                    type:'get',
+                    async:true,
+                    dataType:'json',
+                    success:function(imgData){
+                        // console.log(imgData);
+                        
+                        jQrenderDataToDom(imgData.slider)                        
+                    }
+                })
+                function jQrenderDataToDom(data){
+                    var str="";
+                    $.each(data,function(index,obj){
+                        str+='<a href="'+obj.linkUrl+'"><img src="'+obj.picUrl+'"></a>'
+                    })
+                   $('#banner_jq').html(str)
+                }
+            }
+        
+    </script>
+</body>
+</html>

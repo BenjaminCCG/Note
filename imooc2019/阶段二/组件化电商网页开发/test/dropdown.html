@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        .dropdown{
+            position: relative;
+        }
+        .dropdown-toggle{
+            position: relative;
+            z-index: 2;           
+        }
+        .dropdown-arrow{
+            display: inline-block;            
+            /* background-repeat: no-repeat; */
+            vertical-align: middle;
+        }
+        .dropdown-layer{
+            display: none; 
+            position: absolute;            
+            z-index: 1;            
+        }
+        .dropdown-left{
+            left: 0;
+            right: auto;
+        } 
+         
+        /* menu .dropdown */     
+        .menu .dropdown-toggle{           
+            display: block;
+            height: 100%;
+            padding: 0 16px 0 12px;
+            border-left: 1px solid #f3f5f7;
+            border-right: 1px solid #f3f5f7;
+        }
+        .menu .dropdown-arrow{            
+            /* width: 8px;
+            height: 6px; */
+            /* background-image: url(../img/dropdown-arrow.png) ; */
+            margin-left: 8px;            
+        }
+        .dropdown-layer{        
+             background-color:#fff; 
+            top: 100%;            
+            border: 1px solid #cdd0d4;
+        }        
+        .menu-item{
+            display: block;
+            padding: 0 12px;
+            height: 30px;
+            line-height: 30px;
+            color: #4d555d;
+            white-space: nowrap;
+        }
+        .menu-item:hover{
+            background-color: #f3f5f7
+        }
+        .menu-active .dropdown-toggle{
+            background-color: #fff;
+            border-color: #cdd0d4
+        }
+        .menu-active .dropdown-arrow{
+            /* background-image: url(../img/dropdown-arrow-active.png); */
+        }
+        .menu-active .dropdown-layer{
+            display: block;
+        }
+        .icon-triangle-down{
+            width: 0;
+            height: 0;
+            border: 4px solid #545b62;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-bottom: none;
+        }
+        .menu-active .icon-triangle-down{
+            border-top: none;
+            border-bottom: 4px solid #f11c1c;
+        }
+        
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div class="menu dropdown">
+        <div class="dropdown-toggle">我的慕淘<i class="dropdown-arrow"></i></div>
+        <div class="dropdown-layer dropdown-left"></div>
+    </div> -->
+
+    <div class="menu dropdown fl" data-active='menu'>
+        <a href="#1" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow icon-triangle-down"></i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="#1" class="menu-item">已买到的宝贝</a></li>
+            <li><a href="#1" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+    <div class="menu dropdown fl" data-active='menu'>
+        <a href="#1" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow icon-triangle-down"></i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="#1" class="menu-item">已买到的宝贝</a></li>
+            <li><a href="#1" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/dropdown.js"></script>
+    <script>
+        // $('.dropdown').hover(function(){
+        //     var $this=$(this)
+        //     $this.addClass($this.data('active')+'-active')
+        // },function(){
+        //     var $this=$(this)
+        //     $this.removeClass($this.data('active')+'-active')  
+        // })
+
+        // function dropdown(elem){
+        //     var $elem=$(elem),
+        //         activeClass=$elem.data('active')+'-active';
+        //         $elem.hover(function(){
+        //             $elem.addClass(activeClass)
+        //         },function(){
+        //             $elem.removeClass(activeClass)  
+        //         })
+        // }
+
+        // $.fn.extend({
+        //     dropdown:function(){
+        //     //     return this.map(function(){
+        //     //         dropdown(this)
+        //     //     return this.each(function(){
+        //     //     dropdown(this)               
+        //     //     })
+        //     // 
+        //         return $.each(this,function(i,val){
+        //             dropdown(val)
+        //         })
+        //     }
+        // })
+        
+        // $('.dropdown').dropdown()
+
+
+        // $('.dropdown').each(function(){
+        //     dropdown($(this))
+        // })
+        
+    </script>
+</body>
+</html>

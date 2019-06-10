@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vuejs.js"></script>
+    <script src="../vue-resource.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- 父组件向子组件传递方法使用的是 事件绑定机制 v-on @ ,当我们自定义
+        了一个事件属性之后，那么子组件就能通过某些方式来调用传递进去的这个方法了 -->
+        <com2 @func123="show"></com2>
+    </div>
+    <template id="tmp1">
+        <div>
+            <h1>这是子组件</h1>
+            <input type="button" value="这是子组件中的按钮 - 点击它，触发 父组件传递过来的func方法" @click="myclick">
+        </div>
+    </template>
+    <script>  
+    //定义了一个字面量类型的组件模板对象   
+    var com2={
+        template:"#tmp1", //通过指定了一个Id，表示说，要去加载这个指定Id的template元素中的内容，当做组件的HTML结构
+        data(){
+            return {
+                sonmsg:{name:"小头儿子",age:6}
+            }
+        },
+        methods:{
+            myclick(){
+                //当点击子组件按钮的时候，如何拿到父组件传递过来func方法，并调用这个方法
+                //emit 英文原意:触发 调用的意思
+                // this.$emit("func123",123,456)
+                this.$emit("func123",this.sonmsg)
+            }
+        }
+    }  
+    var vm=new Vue({
+            el:  "#app",
+             data:{
+                 datamsgFormson:null
+             },
+             methods:{
+                 show(data){
+                     console.log("调用了父组件身上的show方法:---"+data); 
+                    // console.log(data); 
+                    this.datamsgFormson=data                                      
+                 }
+             },
+             components:{
+                //  com2:com2
+                com2
+             }
+        })
+    </script>
+</body>
+</html>

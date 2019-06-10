@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id ="root"></div>
+
+    <script type="text/babel">
+   class Cmp1 extends React.Component{            //引起组件重新渲染的条件
+       constructor(...args){                      //1. state 状态发生变化
+           super(...args)                         //2. props 父级修改props的属性  
+          this.state={                            //3. 强制渲染(较少)
+              a:12
+          }
+       }
+       fn(){
+            // this.setState({
+            //      a:this.state.a+1  //状态的变化导致组件的渲染                 
+            // })
+            this.props.a++
+       }
+       render(){           
+        
+           return (
+               <div>
+                {this.props.a}
+                <input type='button' value='+1' onClick={this.fn.bind(this)} />                
+                </div>
+           )
+       }
+   }
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1 a="12"/>,root)
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/browser.js"></script>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">    
+        class Cmp1 extends React.Component{
+            constructor(...args){
+                super(...args)                
+            }
+            render(){
+               let arr=[
+                   {ID:1,name:'blue',age:18},
+                   {ID:2,name:'张三',age:22},
+                   {ID:3,name:'李四',age:25},
+               ]
+              return (
+               <div>
+                {arr.map(item=><Child name={item.name} age={item.age} key={item.ID}></Child>)}
+               </div>
+              )
+            }
+        }
+
+        class Child extends React.Component{
+            constructor(...args){
+                super(...args)                
+            }
+            render(){
+               
+              return (
+               <div>
+                    姓名:{this.props.name}<br/>
+                    年龄:{this.props.age}
+               </div>
+              )
+            }
+        }
+       
+        let root=document.getElementById('root')   
+        ReactDOM.render(<Cmp1/>,root)
+    </script>
+</body>
+</html>

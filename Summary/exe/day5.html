@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./down/vuejs.js"></script>
+    <script src="./down/vue-resource.js"></script>
+    <script src="./down/vue-router.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./down/animate.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <mycom :parent='msg' @meth='show'></mycom>
+    </div>
+    <template id="tmp">
+        <div>
+            <h3 @click='childcall'>得到了父组件数据---{{parent}}</h3>
+        </div>
+    </template>
+    
+    <div id="app2">
+        <input type="text" v-model='firstName' @keyup='getFullName'>
+        <input type="text" v-model='lastName' @keyup='getFullName'>
+        <input type="text" v-model='fullName'>
+    </div>
+    <hr>
+    <div id="app3">
+        <input type="text" v-model='firstName'>
+        <input type="text" v-model='lastName'>
+        <input type="text" v-model='fullName'>
+    </div>
+    <div id="app4">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <router-view></router-view>
+    </div>
+    <div id="app5">
+        <input type="text" v-model='firstName'>
+        <input type="text" v-model='middleName'>
+        <input type="text" v-model='lastName'>
+        <input type="text" v-model='fullName'>
+        
+       <p>{{fullName}}</p>
+    </div>
+   <script> 
+        let login={
+            template:'<h3>登录组件</h3>'
+        }
+        let register={
+            template:'<h3>注册组件</h3>'
+        }
+        let router=new VueRouter({
+            routes:[
+                {path:'/',redirect:login},
+                {path:'/login',component:login},
+                {path:'/register',component:register}
+            ]
+        })
+
+        let mycom={
+            template:'#tmp',
+            props:['parent'],
+            data(){
+                return {
+                    mess:'我是子组件数据'
+                }
+            },
+            methods:{
+                childcall(){
+                    this.$emit('meth',this.mess)
+                }
+            }
+        }
+        let vm=new Vue({
+            el:'#app',
+            data:{
+                msg:'父组件数据',
+                fromchild:null
+            },
+            methods: {
+                show(data){
+                    console.log('我想得到子组件的 ：'+data)
+                    this.fromchild=data
+                }
+            },
+            components:{
+                mycom
+            }
+        })
+        let vm2=new Vue({
+            el:'#app2',
+            data:{
+                firstName:'',
+                lastName:'',
+                fullName:""
+            },
+            methods:{
+                getFullName(){
+                    this.fullName=this.firstName+this.lastName
+                }
+            }
+        })
+        let vm3=new Vue({
+            el:'#app3',
+            data:{
+                firstName:'',
+                lastName:'',
+                fullName:""
+            },
+            watch:{
+                firstName(newval,oldval){//函数名必须和data中对应属性名相同
+                    this.fullName=newval+this.lastName
+                },
+                lastName(newval,oldval){
+                    this.fullName=this.firstName+newval
+                }
+            }
+        })
+        let vm4=new Vue({
+            el:'#app4',
+            router,
+            watch:{
+                "$route.path"(newval,oldval){
+                    if(newval==='/login'){
+                        console.log('欢迎来到登录界面');                        
+                    }else{
+                        console.log('欢迎来到注册页面');
+                        
+                    }
+                }
+            }
+        })
+        let vm5=new Vue({
+            el:"#app5",
+            data:{
+                firstName:'',
+                middleName:"",
+                lastName:''
+            },
+            methods:{},
+            computed: {
+                fullName(){
+                  return  this.firstName+this.middleName+this.lastName
+                }
+            },
+        })
+   </script>
+</body>
+</html>

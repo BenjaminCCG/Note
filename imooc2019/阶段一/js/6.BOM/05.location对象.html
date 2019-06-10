@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <input type="button" value="刷新" id="reload">
+    <script>     
+       setTimeout(function(){
+        //    location.href="03.window对象方法.html"   会留下历史记录
+        //    location.replace("03.window对象方法.html")   没有历史记录
+        // location.reload() 有可能从缓存中加载
+        //location.reload(true) 从服务器重新加载
+       },1000)
+       let reload=document.getElementById('reload')
+       reload.addEventListener('click',function(){
+           location.reload()
+       })
+    </script>
+</body>
+</html>

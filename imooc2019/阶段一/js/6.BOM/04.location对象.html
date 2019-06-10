@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            height: 400px;
+            background-color: #ccc;
+        }
+        #box2{
+            height: 600px;
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <input type="button" id="btn" value="返回顶部">
+    <script>     
+        //location.href  location.hash   
+        console.log(location.href);
+        console.log(location.hash); //#号后的字符   
+        let btn=document.getElementById('btn')
+        btn.addEventListener('click',function(){
+            location.hash='#box1'
+        })    
+        //location.host  
+        console.log(location.host);
+        //location.pathname
+        console.log(location.pathname);
+        //location.port 返回端口号
+        console.log(location.port);
+        //location.search 返回查询字符串，以问号开头
+        //没有则返回空字符串
+    </script>
+</body>
+</html>

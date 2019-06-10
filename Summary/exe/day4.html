@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./down/vuejs.js"></script>
+    <script src="./down/vue-resource.js"></script>
+    <script src="./down/vue-router.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./down/animate.css">
+    <style>
+        .myactive{
+            color: hotpink;
+            font-style: italic;
+            text-decoration: underline;
+            font-size: 40px;
+        }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px)
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.5s ease
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <mycom></mycom>
+    </div>
+    <template id="tmp">
+        <div>
+            <h3>大家好我是渣渣辉--------{{msg}}</h3>
+            <input type="button" @click='msg+=1' value="+1">
+        </div>
+    </template>
+    <div id="app2">
+        <mycom2 :parentmsg='msg' @parentfun='show'></mycom2>
+    </div>
+    <div id="app3">
+        <button @click='get' value="获取元素" ref=mybtn>fuck me</button>
+        <h3 ref='myh3'></h3>
+        <hr>
+        <mycom3 ref='mycom3'></mycom3>
+    </div>
+    <!-- <div id="app4">
+        <router-link to="/login?id=10&name=张三" tag="span">登录</router-link>
+        <router-link to="/register/20/李四" tag="span">注册</router-link>
+        <transition mode='out-in'>
+            <router-view></router-view>
+        </transition>        
+    </div> -->
+    <div id="app5">
+        <router-link to="/account">Account</router-link>
+        <router-view></router-view>
+    </div>
+    <template id="tmp2">
+        <div>
+            <h1>这是Account组件</h1>
+            <router-link to="/account/log">登录</router-link>
+            <router-link to="/account/reg">注册</router-link>
+            <router-view></router-view>
+        </div>
+    </template>
+    <script> 
+        let login={
+            template:'<h1>登录组件----{{$route.query.id}}------{{$route.query.name}}</h1>'
+        }
+        let register={
+            template:'<h1>注册组件----------{{$route.params.id}}-----{{$route.params.name}}</h1>'
+        }
+        let account={
+            template:'#tmp2'
+        }
+        let log={
+            template:'<h3>登录</h3>'
+        }
+        let reg={
+            template:'<h3>注册</h3>'
+        }
+        let routerObj=new VueRouter({
+            routes:[
+                {path:'/',redirect:'/login'},
+                {path:'/login',component:login},
+                {path:'/register/:id/:name',component:register}
+            ],
+            linkActiveClass:'myactive'
+        })
+
+        let router=new VueRouter({
+            routes:[
+                // {path:'/',redirect:'/account'},
+                {path:'/account',component:account,
+                children:[
+                    {path:'log',component:log},
+                    {path:'reg',component:reg}
+                ]
+                }
+            ]
+        })
+        Vue.component('mycom2',{
+            template:'<h3 @click=childfun>我是子组件的h3---{{parentmsg}}</h3>',
+            props:['parentmsg'],
+            data(){
+                return {
+                    msg:'我是子组件参数'
+                }
+            },
+            methods:{
+                childfun(){
+                    this.$emit('parentfun',this.msg)
+                }
+            }
+        })
+
+        let vm=new Vue({
+            el:'#app',
+            data:{},
+            components:{
+                'mycom':{
+                    template:'#tmp',
+                    data(){
+                        return {
+                            msg:'这是一首简单的小情歌'
+                        }
+                    },
+                    methods: {
+                        
+                    },
+                }
+            }
+        })
+        
+        let vm2=new Vue({
+            el:'#app2',
+            data:{
+                msg:'我是父组件data值',
+                childmsg:null
+            },
+            methods:{
+                show(data){
+                    console.log('我是父组件的方法'+data); 
+                    this.childmsg=data                   
+                }
+            }
+        })
+        
+        let vm3=new Vue({
+            el:"#app3",
+            data:{
+                msg:''
+            },
+            methods:{
+                get(){
+                    console.log(this.$refs.mycom3.msg);
+                    this.msg=this.$refs.mycom3.msg
+                    this.$refs.mycom3.show()
+                }
+            },
+            components:{
+                'mycom3':{
+                    template:'<h1>登录组件</h1>',
+                    data(){
+                        return {
+                            msg:'son msg'
+                        }    
+                    },
+                    methods:{
+                        show(){
+                            console.log('子组件消息'+this.msg);                            
+                        }
+                    }
+                }
+            }
+        })
+    
+        // let vm4=new Vue({
+        //     el:'#app4',
+        //     data:{},
+        //     methods:{},
+        //     router:routerObj,
+        //     created() {
+        //         console.log(this.$route.query.id)
+        //         console.log(this.$route.params.id)
+        //     },
+        // })
+    
+        let vm5=new Vue({
+            el:'#app5',
+            router
+        })
+    </script>
+</body>
+</html>

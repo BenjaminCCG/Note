@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #parent{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: relative;
+        }
+        #child{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="child"></div>
+    </div>
+    <script>
+        let parent=document.getElementById('parent')
+        let child=document.getElementById('child')
+        parent.addEventListener('click',function(){
+            alert(this.id+'事件触发')
+        },false) //false 冒泡 true 捕获
+        child.addEventListener('click',function(){
+            alert(this.id+'事件触发')
+        },false)
+    </script>
+</body>
+</html>

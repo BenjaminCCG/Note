@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./down/vuejs.js"></script>
+    <title>Document</title>
+    <style>
+        .red{
+            color:red
+        }
+        .bold{
+            font-weight: bold
+        }
+        .blue{
+            color: blue
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p :class="['red','bold']">{{msg}} 我是你哥哥</p>
+        <p v-text='msg' :class="[{'blue':bool}]"> 我是你哥哥</p>
+        <p v-html='hmsg' :class='obj'>我是你哥哥</p>
+        <p :title='title' :style='styobj1'>我是你哥哥</p>
+        <button @click='show' :style="[styobj1,styobj2]">我是你哥哥</button>
+        <div>
+            <button @click='doIt'>跑起来</button>
+            <button @click='stop'>停止</button>
+            <p>{{run}}</p>
+        </div>
+        <div @click='c3'>
+            <p @click.self='c2'>
+                <a href="http://www.baidu.com" @click.prevent='c1'>百度一下</a>
+            </p>
+
+        </div>
+        <div @click='c3'>
+            <p @click='c2'>
+                <a href="http://www.baidu.com" @click.prevent.stop.once='c1'>百度一下</a>
+            </p>
+        </div>
+        <textarea cols="30" rows="10" v-model='msg'></textarea>
+        <div>
+            <input type="text" v-model='data1'>
+            <select name="" id="" v-model='opt'>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="text" v-model='data2'>
+            <button @click='answer'>=</button>
+            <input type="text" v-model='data3'>
+        </div>
+        <ul>
+            <li v-for='(item,index) in num' v-if='flag'>第{{index}}项是{{item}}</li>
+        </ul>
+        <div v-show='flag'>
+            <p v-for='item in list'  :key='item.id'>第{{item.id}}项是{{item.name}}</p>
+        </div>
+        <ul>
+            <ol v-for='(value,key) in obj2'>键是{{key}},值是{{value}}</ol>
+        </ul>
+        <ul>
+            <li v-for='count in 10'>这是第{{count}}次循环</li>
+        </ul>
+    </div>
+    <script>
+        let vm=new Vue({
+            el:'#app',
+            data:{
+                msg:'欢迎来到Vue',
+                title:'我是一个title',
+                hmsg:'<h1>我是h1还是p呢</h1>',
+                run:'我是一个跑马灯,跑啊跑啊跑' ,
+                close:null ,
+                data1:0,
+                flag:false,
+                data2:0,
+                data3:0,
+                opt:'+' ,
+                bool:false,
+                obj:{red:true,bold:true,blue:false},
+                styobj1:{color:'blue','font-weight':'bolder'},
+                styobj2:{'font-size':'22px',border:'none'},
+                num:['orange','apple','pear','monkey','donkey'],
+                list:[
+                    {id:1,name:'cat'},
+                    {id:2,name:'dog'},
+                    {id:3,name:'forg'},
+                    {id:4,name:'chicken'}
+                ],
+                obj2:{
+                    id:89757,
+                    name:'tomas',
+                    age:18
+                }
+            },
+            methods:{
+                show(){
+                    console.log('大家好我是渣渣辉');                    
+                },
+                doIt(){
+                    if(this.close!==null)return
+                   this.close = setInterval(()=>{
+                        // console.log(this); 
+                        this.run=this.run.slice(1)+this.run.substr(0,1)
+                    },500)
+                },
+                stop(){
+                    clearTimeout(this.close)
+                    this.close=null
+                },
+                c1(){
+                    console.log('我是百度');                    
+                },
+                c2(){
+                    console.log('我是P');                    
+                },
+                c3(){
+                    console.log('我是DIV');                    
+                },
+                answer(){
+                    console.log(this.opt);
+                    
+                    let  con=document.getElementsByTagName('select')[0].value;
+                    if(con=='+'){
+                        this.data3=parseInt(this.data1)+parseInt(this.data2)
+                    }else if(con=='-'){
+                        this.data3=parseInt(this.data1)-parseInt(this.data2)
+                    }else if(con=='*'){
+                        this.data3=parseInt(this.data1)*parseInt(this.data2)
+                    }else if(con=='/'){
+                        this.data3=parseInt(this.data1)/parseInt(this.data2)
+                    }            
+                }
+            }
+        })
+        document.addEventListener('keydown',e=>{
+            if(e.key=='Enter'){
+                vm.answer()
+            }           
+        })
+    </script>
+</body>
+</html>

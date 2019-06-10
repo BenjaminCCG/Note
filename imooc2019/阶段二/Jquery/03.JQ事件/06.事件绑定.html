@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全屏的云南旅游相册</title>
+    <link rel="stylesheet" href="./css/sttyle.css">
+    <script src="../../../../jquery-3.3.1/jquery-3.3.1.min.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <!-- <form action="javascript:alert('我被提交了')">
+        <input type="text">
+        <input type="button" value="按钮">
+        <button>提交</button>
+    </form> -->
+    <button class="obj">这个按钮点击没有效果</button>
+    <button class="bind">绑定</button>
+    <button class="unbind">取消绑定</button>
+    <button class="one">绑定一次</button>
+    <div style="display:none">第一个按钮被点击了</div>
+    <span></span>
+    <nav>
+        <a href="#">泸沽湖</a>
+        <a href="#">丽江古城</a>
+        <a href="#">茶马古道</a>
+        <a href="#">就这家·云逸客栈</a>
+        <a href="#">西双版纳</a>
+        <a href="#">云南红酒庄</a>
+        <a href="#">轿子雪山</a>
+        <a href="#">普者黑</a>
+        <a href="#">海埂大坝</a>
+        <a href="#">玉龙湾</a>
+        <a href="#">昆明郊野公园</a>
+        <a href="#">欧洲风琴小镇</a>
+    </nav>
+    <div>
+        <img src="./images/1.jpg">
+        <img src="./images/2.jpg">
+        <img src="./images/3.jpg">
+        <img src="./images/4.jpg">
+        <img src="./images/5.jpg">
+        <img src="./images/6.jpg">
+        <img src="./images/7.jpg">
+        <img src="./images/8.jpg">
+        <img src="./images/9.jpg">
+        <img src="./images/10.jpg">
+        <img src="./images/11.jpg">
+        <img src="./images/12.jpg">
+    </div>
+    <script>
+        $(function(){ 
+            var index=0;
+            //1.on(events,[selectors],[data],fn)
+            // $(document).on('mouseenter','a',function(event){
+            //     event.stopPropagation()
+            //     index=($(this).index());
+            //     sipwer()
+            // }) 
+
+            // $(document).on('keydown',function(event){
+            //     if(event.keyCode==37){
+            //         index=index==0?$('a').length-1:--index 
+            //     }else if(event.keyCode==39){
+            //         index=index==$('a').length-1?0:++index
+            //     }else{
+            //         return false
+            //     } 
+            //     sipwer()             
+            // })  
+            //一次绑定多个事件
+            $('a').add(document).on({
+                mouseenter:function(event){
+                    event.stopPropagation()
+                    index=($(this).index());
+                    sipwer()
+                },
+                keydown:function(event){
+                    if(event.keyCode==37){
+                    index=index==0?$('a').length-1:--index 
+                    }else if(event.keyCode==39){
+                        index=index==$('a').length-1?0:++index
+                    }else{
+                        return true
+                    } 
+                    sipwer() 
+                }
+            })
+
+            var sipwer=function(){
+                $('img').eq(index).css({'opacity':'1'}).siblings().css({'opacity':'0'})       
+            } 
+            
+            
+            //2.off(events,[selector],[fn])  移除一个或者多个事件处理函数
+            function flash(e){
+                $('div:first-of-type').show().fadeOut('slow')
+                console.log(e.data);
+            }
+            $('.bind').click(function(){
+                $(document).on('click','.obj',{name:'json'},flash)
+                .find('.obj').text('点击按钮有效果')
+                
+                
+            })
+            $('.unbind').click(function(){//取消匿名函数时设置'click.a' 取消多事件用空格隔开
+                $(document).off('click','.obj',flash)
+                .find('.obj').text('这个按钮点击没有效果')
+            })
+
+            //one(events,[selectors],[data],fn)  绑定一个一次性的事件函数
+            $('.one').click(function(){
+                $(document).one('click','.obj',flash).find('.obj').text('这个按钮可以点击一次')
+            })
+        })        
+    </script>
+</body>
+</html>

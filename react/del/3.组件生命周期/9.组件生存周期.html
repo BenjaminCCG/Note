@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id ="root"></div>
+
+    <script type="text/babel">
+   class Cmp1 extends React.Component{          //钩子函数=>也就是事件触发函数
+       constructor(...args){                    
+           super(...args)                          
+         console.log('constructor');
+         this.state={
+             a:0
+         }
+       }   
+       fn(){
+           this.setState({
+               a:this.state.a+1
+           })
+       }  
+      componentDidMount(){
+          console.log("didMount");
+          
+      }
+
+      componentDidUpdate(){
+          console.log("didUpdate");
+          
+      }
+       render(){       
+        console.log("渲染了");
+        
+           return (
+               <div> 
+                    <input type="button" value="+1" onClick={this.fn.bind(this)} />
+                   a={this.state.a}
+                               
+                </div>
+           )
+       }
+   }
+
+  
+    let root=document.getElementById("root");
+    ReactDOM.render(<Cmp1 />,root)
+    </script>
+</body>
+</html>

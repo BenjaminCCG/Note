@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p class="odd2 odd odd1">1</p>
+    <p class="even">2</p>
+    <p class="odd">3</p>
+    <p class="even">4</p>
+    <script>
+        var odd=getByClassName('odd')
+        var even=getByClassName('even')
+        for(var i=0;i<odd.length;i++){
+            odd[i].style.backgroundColor='red'
+        }
+        for(var i=0;i<even.length;i++){
+            even[i].style.backgroundColor='yellow'
+        }
+
+        // function getByClassName(className,parentNode){
+        //     if(!document.getElementsByClassName){
+        //         return document.getElementsByClassName(className)
+        //     }else{                
+        //         parentNode=parentNode||document
+        //         var nodeList=[];
+        //         var allNodes=parentNode.getElementsByTagName('*')
+
+        //         for(var i=0;i<allNodes.length;i++){
+        //             if(allNodes[i].className===className){
+        //                 nodeList.push(allNodes[i])
+        //             }
+        //         }
+        //         return nodeList
+        //     }
+        // }   
+        
+        
+        function getByClassName(className,parentNode){
+            if(document.getElementsByClassName){
+                return document.getElementsByClassName(className)
+            }else{                
+                parentNode=parentNode||document
+                var nodeList=[];
+                var allNodes=parentNode.getElementsByTagName('*')
+                //构造函数中的转义字符需要双重转义
+                // var pattern= new RegExp('(^|\\s+)'+className+'($|\\s)')
+                var pattern= new RegExp('\\b'+className+'\\b')
+                for(var i=0;i<allNodes.length;i++){
+                    if(pattern.test(allNodes[i].className)){
+                        nodeList.push(allNodes[i])
+                    }
+                }
+                return nodeList
+            }
+        } 
+    </script>
+</body>
+</html>

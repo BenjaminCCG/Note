@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box>div{
+            float: left;
+        }
+        .tip{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left">
+            <input type="text" id="phone" placeholder="请输入手机号">
+        </div>
+        <div class="tip" id="tip">
+            请输入有效的手机号码
+        </div>
+    </div>
+    <script>
+       window.onload=function(){
+           let phone=document.getElementById('phone'),
+               tip=document.getElementById('tip')
+               //onfocus和onblur 获得焦点和失去焦点
+               phone.onfocus=function(){
+                   tip.style.display="block"
+               }
+               phone.onblur=function(){
+                tip.style.display="none"
+                let phonevalue=this.value
+                // alert(phonevalue)
+                   if(phone.value.length!=11||isNaN(phonevalue)){
+                       alert("请输入11位数字")
+                   }else{
+                       alert('good')
+                   }
+               }
+       }
+    </script>
+</body>
+</html>
